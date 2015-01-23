@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "etsy-metrics",
   "version": "0.0.0",
   "private": true,
@@ -15,26 +14,4 @@
     "morgan": "~1.5.1",
     "request": "^2.51.0",
     "serve-favicon": "~2.2.0"
-=======
-  "name": "EtsyMetrics",
-  "version": "0.0.1",
-  "description": "Seller metrics generated through the Etsy API",
-  "main": "index.js",
-  "scripts": {
-    "test": "none"
-  },
-  "repository": {
-    "type": "git",
-    "url": "none"
-  },
-  "keywords": [
-    "none"
-  ],
-  "author": "Laura Maddox",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.11.1",
-    "request": "^2.51.0"
->>>>>>> e0b7f71c5641a08b81b6a0c62f9eb2e66a5775e8
-  }
 }
