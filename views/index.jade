@@ -1,4 +1,9 @@
 extends layout
 
 block content
-  p #{etsy_data}
+  p Etsy Seller Metrics
+  p count #{count}
+  each item in results
+    p !{item.title}, !{item.price}, !{item.views} views, !{item.num_favorers} favorites
+    p !{item.tags}
+    p &nbsp;

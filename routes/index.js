@@ -4,11 +4,30 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var url = 'https://openapi.etsy.com/v2/listings/active?limit=5&tags=feminine dog collar&fields=title,price,tags,views,num_favorers&sort_on=score&api_key=' + req.app.locals.config.api_key;
+  var host = 'https://openapi.etsy.com';
+  var path = '/v2/listings/active';
+  var fields = {
+    'limit': '100',
+    'tags': 'dog collar',
+    'fields': 'title,price,tags,views,num_favorers',
+    'sort_on': 'score',
+    'api_key': req.app.locals.config.api_key
+  };
   
-  request({url: url, json: true}, function(error, response, body) { 
+  var params = Object.keys(fields).map(function(key) {
+    return key + '=' + fields[key];  
+  }).join('&');
+
+  var url = host + path + '?' + params;
+
+  request({url: url, json: true}, function(error, response, etsy_data) { 
     if (error) { throw error; }
-    res.render('index', { etsy_data: JSON.stringify(body) });
+    
+    var sorted_results = (etsy_data.results || []).sort(function(a, b) {
+      return b.views - a.views;
+    });
+
+    res.render('index', { count: etsy_data.count, results: sorted_results });
   });
 
 });
