@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     'tags': 'dog collar',
     'fields': 'title,price,tags,views,num_favorers',
     'sort_on': 'score',
+    'includes': 'MainImage',
     'api_key': req.app.locals.config.api_key
   };
   
@@ -22,6 +23,7 @@ router.get('/', function(req, res, next) {
 
   request({url: url, json: true}, function(error, response, etsy_data) { 
     if (error) { throw error; }
+    console.log(etsy_data);
     
     var sorted_results = (etsy_data.results || []).sort(function(a, b) {
       return b.views - a.views;
