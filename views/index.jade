@@ -1,10 +1,21 @@
 extends layout
 
 block content
-  p Etsy Seller Metrics
-  p count #{count}
-  each item in results
-    p !{item.title}, !{item.price}, !{item.views} views, !{item.num_favorers} favorites
-    img(src='#{item.MainImage.url_170x135}')
-    p !{item.tags}
-    p &nbsp;
+    .row
+        .col-md-12
+            p Etsy Seller Metrics
+            form(name="input", action="/", method="POST")
+                input(type="text", name="search_tag")
+                input(type="submit", value="Submit")
+            p count #{count}
+    .row
+        .col-md-6    
+            p !{tags.length} tags used
+            each tag in tags
+                !{tag[0]} !{tag[1]}
+                br
+        .col-md-6
+            each item in results
+                p !{item.title}, !{item.price}, !{item.views} views, !{item.num_favorers} favorites
+                img(src='#{item.MainImage.url_75x75}')
+                p !{item.tags}
