@@ -51,7 +51,7 @@ router.post('/', function(req, res, next) {
       return b[1] - a[1];
     });
 
-    res.render('index', { count: etsy_data.count, results: sorted_results, tags: sorted_tags });
+    res.render('dashboard', { count: etsy_data.count, results: sorted_results, tags: sorted_tags });
   });
 });
 
@@ -59,8 +59,7 @@ router.post('/', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var url = createRequestUrl('blue hat', req.app.locals.config.api_key);
-
-  res.render('index', { count: 0, results: [] });
+  res.render('index', { count: 0, results: [], tags: [] });
 });
 
 

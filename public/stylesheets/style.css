@@ -1,8 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
+    font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+#header {
+    background-color: #fff;
+    padding: 30px 0px;
+}
+
+#logo {
+    color: #555;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.search-form {
+    margin: 150px 0px;
+}
+.search-form .btn {
+    background-color: #f08777;
+    border-color: #f08777;
+    box-shadow: 0 2px 1px #9f6158;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    padding: 6px;
 }

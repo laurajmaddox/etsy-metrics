@@ -4,11 +4,14 @@ html
   head
     title= title
 
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    
     // Bootstrap minified CSS CDN
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
 
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
   body
+    #header.container-fluid.text-center
+        #logo ETSY SELLER METRICS
+
     .container
         block content

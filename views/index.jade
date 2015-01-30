@@ -2,20 +2,10 @@ extends layout
 
 block content
     .row
-        .col-md-12
-            p Etsy Seller Metrics
-            form(name="input", action="/", method="POST")
-                input(type="text", name="search_tag")
-                input(type="submit", value="Submit")
-            p count #{count}
-    .row
-        .col-md-6    
-            p !{tags.length} tags used
-            each tag in tags
-                !{tag[0]} !{tag[1]}
-                br
-        .col-md-6
-            each item in results
-                p !{item.title}, !{item.price}, !{item.views} views, !{item.num_favorers} favorites
-                img(src='#{item.MainImage.url_75x75}')
-                p !{item.tags}
+        .col-md-4.col-md-offset-4
+            form(name="search-form", action="/", method="POST").search-form
+                .form-group
+                    label.sr-only(for="search_tag")
+                    input(type="text", name="search_tag", placeholder="Search for a tag").form-control
+                    input(type="submit", value="Submit").btn.col-md-12
+
