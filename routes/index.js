@@ -22,46 +22,55 @@ function createRequestUrl(search_tag, api_key) {
   return url = host + path + '?' + params;
 }
 
+function getSortedTags(listings) {
+  counts = {}
 
+  listings.forEach(function (listing) {
+    for (i in listing.tags) {
+      key = listing.tags[i].toLowerCase();
+      counts[key] = (counts[key] || 0) + 1;
+    }
+  });
+
+  var tags = []
+
+  for (var key in counts) {
+    tags.push([key, counts[key]]);
+  } 
+
+  return tags.sort(function(a, b) {
+    return b[1] - a[1];
+  });
+}
+
+function sortListings(listings, sort_by) {
+  return (listings || []).sort(function(a, b) {
+      return b.views - a.views;
+    });
+}
+
+
+/* POST tag search to index route, render dashboard view */
 router.post('/', function(req, res, next) {
-  var url = createRequestUrl(req.body.search_tag, req.app.locals.config.api_key);
+  var search_tag = req.body.search_tag
+  var url = createRequestUrl(search_tag, req.app.locals.config.api_key);
 
   request({url: url, json: true}, function(error, response, etsy_data) { 
     if (error) { throw error; }
-   
-    var sorted_results = (etsy_data.results || []).sort(function(a, b) {
-      return b.views - a.views;
-    });
-
-    tags = {};
-
-    sorted_results.forEach(function(listing) {
-      for (i in listing.tags) {
-        tags[listing.tags[i]] = (tags[listing.tags[i]] || 0) + 1;
-      }
-    });
-
-    var sorted_tags = []
-
-    for (var key in tags) {
-      sorted_tags.push([key, tags[key]]);
-    } 
-
-    sorted_tags = sorted_tags.sort(function(a, b) {
-      return b[1] - a[1];
-    });
-
+    
+    var listings = sortListings(etsy_data.results, 'views');
+    var tags = getSortedTags(listings);
+    
     res.render('dashboard', { 
-      search_term: req.body.search_tag, 
+      search_term: search_tag, 
       count: etsy_data.count, 
-      results: sorted_results, 
-      tags: sorted_tags 
+      listings: listings, 
+      tags: tags 
     });
   });
 });
 
-
-/* GET index page + POST tag search */
+/* GET index view */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
