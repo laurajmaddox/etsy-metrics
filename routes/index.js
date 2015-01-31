@@ -61,10 +61,9 @@ router.post('/', function(req, res, next) {
 });
 
 
-/* GET home page. */
+/* GET index page + POST tag search */
 router.get('/', function(req, res, next) {
-  var url = createRequestUrl('blue hat', req.app.locals.config.api_key);
-  res.render('index', { count: 0, results: [], tags: [] });
+  res.render('index');
 });
 
 
