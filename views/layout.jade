@@ -10,8 +10,9 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     
   body
-    #header.container-fluid.text-center
-        #logo ETSY SELLER METRICS
+    .navbar.navbar-default
+        .container
+            .navbar-header
+                a.navbar-brand(href="/") ETSY SELLER METRICS
 
-    .container
-        block content
+    block content

@@ -33,7 +33,7 @@ router.post('/', function(req, res, next) {
       return b.views - a.views;
     });
 
-    tags = {}
+    tags = {};
 
     sorted_results.forEach(function(listing) {
       for (i in listing.tags) {
@@ -51,7 +51,12 @@ router.post('/', function(req, res, next) {
       return b[1] - a[1];
     });
 
-    res.render('dashboard', { count: etsy_data.count, results: sorted_results, tags: sorted_tags });
+    res.render('dashboard', { 
+      search_term: req.body.search_tag, 
+      count: etsy_data.count, 
+      results: sorted_results, 
+      tags: sorted_tags 
+    });
   });
 });
 

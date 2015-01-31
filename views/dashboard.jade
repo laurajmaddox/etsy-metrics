@@ -1,0 +1,74 @@
+extends layout
+
+block content
+    .container-fluid.summary-stats
+        .container
+            .row
+                .col-md-3
+                    .row
+                        .col-md-12 
+                            h3 !{search_term}
+                    .row
+                        .col-md-12 
+                            h6 YOUR SEARCH TERM
+                .col-md-2
+                    .row
+                        .col-md-12 
+                            h2 #{count}
+                    .row
+                        .col-md-12 
+                            h6 TOTAL LISTINGS
+                .col-md-2
+                    .row
+                        .col-md-12 
+                            h2 !{tags.length}
+                    .row
+                        .col-md-12 
+                            h6 TAG SUGGESTIONS
+                .col-md-2
+                    .row
+                        .col-md-12
+                            h2 43.7
+                    .row
+                        .col-md-12
+                            h6 AVERAGE DAILY VIEWS
+    .container
+        .row
+            .col-md-4.tag-list    
+                each tag in tags
+                    .row
+                        .col-md-6.h4
+                            !{tag[0]}
+                        .col-md-5
+                            .percent-bar
+                                .percentage(style="width: #{tag[1]}%")
+                        .col-md-1.percent-text
+                            span #{tag[1]}
+                            span.small %
+            .col-md-8.listing-list
+                each item in results
+                        .col-md-12
+                            .div.listing-card
+                                .row
+                                    .col-md-3.img-column
+                                        img(src='#{item.MainImage.url_170x135}').img-responsive
+                                    .col-md-9
+                                        .row
+                                            .col-md-12
+                                                !{item.title}
+                                        .row
+                                            .col-md-12
+                                                span.small VIEWS:&nbsp;&nbsp;
+                                                | !{item.views} 
+                                                span.small.pad-left FAVS:&nbsp;&nbsp;
+                                                | !{item.num_favorers} 
+                                                span.small.pad-left CREATED:&nbsp;&nbsp;
+                                                | Jan 31, 2015 
+                                                span.small.pad-left PRICE:&nbsp;&nbsp;
+                                                | $!{item.price}
+                                                span.small.daily-views.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
+                                                span.daily-views 43.7
+                                        .row
+                                            .col-md-12  
+                                                each tag in item.tags     
+                                                    .word-tag #{tag}
