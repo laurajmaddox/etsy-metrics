@@ -3,23 +3,25 @@ var request = require('request');
 var router = express.Router();
 
 
+/* Utility helper functions */
 function createRequestUrl(search_tag, api_key) {
   var host = 'https://openapi.etsy.com';
   var path = '/v2/listings/active';
   var fields = {
     'limit': '100',
     'tags': search_tag,
-    'fields': 'title,price,tags,views,num_favorers',
+    'fields': 'title,price,tags,views,num_favorers,original_creation_tsz',
     'sort_on': 'score',
     'includes': 'MainImage',
     'api_key': api_key
   };
-  
+
   var params = Object.keys(fields).map(function(key) {
     return key + '=' + fields[key];  
   }).join('&');
 
-  return url = host + path + '?' + params;
+  console.log(host+path+'?'+params);
+  return host + path + '?' + params;
 }
 
 function getSortedTags(listings) {
@@ -57,10 +59,10 @@ router.post('/', function(req, res, next) {
 
   request({url: url, json: true}, function(error, response, etsy_data) { 
     if (error) { throw error; }
-    
+
     var listings = sortListings(etsy_data.results, 'views');
     var tags = getSortedTags(listings);
-    
+
     res.render('dashboard', { 
       search_term: search_tag, 
       count: etsy_data.count, 
@@ -69,6 +71,7 @@ router.post('/', function(req, res, next) {
     });
   });
 });
+
 
 /* GET index view */
 router.get('/', function(req, res, next) {
