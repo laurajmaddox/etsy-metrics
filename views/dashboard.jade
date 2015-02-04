@@ -7,21 +7,21 @@ block content
                 .col-md-3
                     .row
                         .col-md-12 
-                            h3 !{search_term}
+                            h3 !{results.search_term}
                     .row
                         .col-md-12 
                             h6 YOUR SEARCH TERM
                 .col-md-2
                     .row
                         .col-md-12 
-                            h2 #{count}
+                            h2 #{results.total}
                     .row
                         .col-md-12 
                             h6 TOTAL LISTINGS
                 .col-md-2
                     .row
                         .col-md-12 
-                            h2 !{tags.length}
+                            h2 !{results.sorted_tags.length}
                     .row
                         .col-md-12 
                             h6 TAG SUGGESTIONS
@@ -35,7 +35,7 @@ block content
     .container
         .row
             .col-md-4.tag-list    
-                each tag in tags
+                each tag in results.sorted_tags
                     .row
                         .col-md-6.h4
                             !{tag[0]}
@@ -46,7 +46,7 @@ block content
                             span #{tag[1]}
                             span.small %
             .col-md-8.listing-list
-                each item in listings
+                each item in results.listings
                         .col-md-12
                             .div.listing-card
                                 .row
