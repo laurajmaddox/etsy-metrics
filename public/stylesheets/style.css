@@ -117,12 +117,24 @@ Dashboard view
     line-height: 28px;
 }
 
+.listing-card .small-stat-row {
+    margin-top: 5px;
+}
+
+.listing-card .small-stat-row .small {
+    line-height: 16px;
+}
+
 .listing-card .daily-views {
     color: #e74c3c;
 }
 
 .listing-card .small.pad-left {
     margin-left: 8px;
+}
+
+.listing-card .small-tag-row {
+    padding-top: 8px;
 }
 
 .listing-card .word-tag {
