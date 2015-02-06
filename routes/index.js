@@ -2,6 +2,9 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
+var Memcached = require('memcached');
+var memcached = new Memcached('127.0.0.1:11211');
+
 var helpers = require('../lib/utils');
 var Results = require('../lib/results');
 
