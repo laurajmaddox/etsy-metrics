@@ -8,18 +8,18 @@ var Results = require('./results');
 
 
 /* GET index view */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.render('index');
 });
 
-/* POST tag search to index route, redirect to dashboard route */
-router.post('/', function(req, res, next) {
-    var search_term = helpers.tagToSlug(req.body.search_tag);
-    res.redirect('/tag/' + search_term);
+/* GET search route, redirect to dashboard route */
+router.get('/search', function (req, res, next) {
+    var tag = helpers.tagToSlug(req.query.tag);
+    res.redirect('/tag/' + tag);
 });
 
 /* GET dashboard view for a tag search */
-router.get('/tag/:slug', function(req, res, next) {
+router.get('/tag/:slug', function (req, res, next) {
     var tag = req.params.slug;
     dashboard.cacheGet(tag, function (results) {
         if (!results) {
