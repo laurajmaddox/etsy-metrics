@@ -4,47 +4,45 @@ Results object for stats + listings from Etsy API response
 =============================================================
 */ 
 
-var Results = function (search_term, total, results) {
-    results = this.processListings(results)
-
-    this.avg_views = results.avg_views;
-    this.listings = results.listings;
-    this.search_term = search_term;
+var Results = function (searchTerm, total, results) {
+    this.searchTerm = searchTerm;
     this.total = total;
+
+    this.viewsDaily = 0;
+    var tagCounts = {};
+
+    for (i in results) {
+        var listing = results[i];
+
+        // Add readable creation date to listing object
+        var creationDate = new Date(listing.original_creation_tsz * 1000);
+        listing['creationDate'] = creationDate.toDateString().slice(4)
+
+        
+        // Calculate + add average daily views to listing object
+        var listingAge = Math.round((Date.now() - creationDate) / 86400000) || 1;
+        var listingViewsDaily = Math.round(listing.views / listingAge);
+
+        listing['viewsDaily'] = listingViewsDaily;
+        this.viewsDaily += listingViewsDaily;
+
+        // Tally listing's tags in total counts
+        for (k in listing.tags) {
+            key = listing.tags[k].toLowerCase();
+            tagCounts[key] = (tagCounts[key] || 0) + 1;
+        }
+    }
+
+    this.viewsDaily = (this.viewsDaily / (results.length || 1)).toFixed(1);
+    this.listings = results;
 
     this.sortBy('views');
     
-    this.sorted_tags = this.getSortedTags(results.tag_counts);
+    this.tagsSorted = this.sortTags(tagCounts);
 }
 
-// Calculate average views + tag counts for Etsy API listing results
-Results.prototype.processListings = function (results) {
-    var avg_total = 0;
-    var tag_counts = {};
 
-    for (var i = 0; i < results.length; i++) {
-        var listing = results[i];
-
-        // Calculate average views per listing
-        listing['avg_views'] = Math.round(
-            listing.views/((Date.now() / 1000 - listing.original_creation_tsz)/ 86400)
-        );
-        avg_total += listing['avg_views'];
-        
-        // Increment tag counts
-        for (var k = 0; k < listing.tags.length; k++) {
-            key = listing.tags[k].toLowerCase();
-            tag_counts[key] = (tag_counts[key] || 0) + 1;
-        }
-    }
-    return {
-        avg_views: (avg_total / 100).toFixed(1), 
-        listings: results,
-        tag_counts: tag_counts
-    };
-}
-
-Results.prototype.getSortedTags = function (counts) {
+Results.prototype.sortTags = function (counts) {
     var tags = [];
     for (var key in counts) {
         tags.push([key, counts[key]]);

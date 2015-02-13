@@ -7,7 +7,7 @@ block content
                 .col-sm-4.col-md-4.col-lg-3
                     .row
                         .col-sm-12.col-md-12.col-lg-12 
-                            h3 !{results.search_term}
+                            h3 !{results.searchTerm}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 YOUR SEARCH TERM
@@ -21,21 +21,21 @@ block content
                 .col-sm-3.col-md-2.col-lg-2
                     .row
                         .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.sorted_tags.length}
+                            h2 !{results.tagsSorted.length}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 TAG SUGGESTIONS
                 .col-sm-2.col-md-2.col-lg-2
                     .row
                         .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.avg_views}
+                            h2 !{results.viewsDaily}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 AVERAGE DAILY VIEWS
     .container
         .row
             .col-sm-3.col-md-3.col-lg-4.tag-list    
-                each tag in results.sorted_tags
+                each tag in results.tagsSorted
                     .row
                         .col-sm-10.col-md-6.col-lg-6.h4 !{tag[0]}
                         .hidden-sm.col-md-5.col-lg-5
@@ -61,23 +61,23 @@ block content
                                                 span.small.pad-left FAVS:&nbsp;&nbsp;
                                                 | !{item.num_favorers} 
                                                 span.small.pad-left CREATED:&nbsp;&nbsp;
-                                                | !{new Date(item.original_creation_tsz*1000).toDateString().slice(4) }
+                                                | !{item.creationDate}
                                                 span.small.pad-left PRICE:&nbsp;&nbsp;
                                                 | $!{item.price}
                                                 span.small.daily-views.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span.daily-views !{item.avg_views}
+                                                span.daily-views !{item.viewsDaily}
                                             .visible-sm.col-sm-12.small-stat-row
                                                 span.small VIEWS:&nbsp;&nbsp;
                                                 | !{item.views} 
                                                 span.small.pad-left FAVS:&nbsp;&nbsp;
                                                 | !{item.num_favorers} 
                                                 span.small.pad-left CREATED:&nbsp;&nbsp;
-                                                | !{new Date(item.original_creation_tsz*1000).toDateString().slice(4) }
+                                                | !{item.creationDate}
                                                 br
                                                 span.small PRICE:&nbsp;&nbsp;
                                                 | $!{item.price}
                                                 span.small.daily-views.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span.daily-views !{item.avg_views}
+                                                span.daily-views !{item.viewsDaily}
                                         .row.hidden-sm
                                             .col-md-12.col-lg-12
                                                 each tag in item.tags     
