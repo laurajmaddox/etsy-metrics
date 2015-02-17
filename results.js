@@ -6,7 +6,7 @@ Results object for listings + stats from Etsy API response
 
 var Results = function (searchTerm, total, results, from_cache) {
     this.searchTerm = searchTerm;
-    this.total = total;
+    this.total = total < 50000 ? total : '50,000+';
 
     if (from_cache) {
         this.listings = results.listings;
