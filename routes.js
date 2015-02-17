@@ -25,8 +25,9 @@ router.get('/tag/:slug', function (req, res, next) {
     var sort = req.query.sort || 'views';
     dashboard.cacheGet(tag, function (results) {
         if (results) {
-            results = new Results(helpers.tagFromSlug(tag), results.total, results, true);
-            res.render('dashboard', {results: results.sortBy(constants.SORT_KEYS[sort])});
+            results = new Results(helpers.tagFromSlug(tag), results.total, results, true)
+                .sortBy(constants.SORT_KEYS[sort]);
+            res.render('dashboard', {results: results});
         } else {
             dashboard.etsyGet(
                 helpers.tagFromSlug(tag),

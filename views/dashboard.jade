@@ -1,5 +1,10 @@
 extends layout
 
+
+block js-from-view
+    script(src='/js/dashboard.js')
+
+
 block content
     .container-fluid.summary-stats
         .container
@@ -34,6 +39,14 @@ block content
                             h6 AVERAGE DAILY VIEWS
     .container
         .row
+            .col-sm-12.col-md-12.col-lg-12
+                ul.nav.nav-pills
+                    li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
+                    li#sort-price(role='presentation'): a(href='?sort=price') PRICE
+                    li#sort-creation(role='presentation'): a(href='?sort=creation') CREATION DATE
+                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
+                    li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
+        .row
             .col-sm-3.col-md-3.col-lg-4.tag-list    
                 each tag in results.tagsSorted
                     .row
@@ -44,7 +57,7 @@ block content
                         .col-sm-2.col-md-1.col-lg-1.percent-text
                             span #{tag[1]}
                             span.small %
-            .col-sm-9.col-md-9.col-lg-8.listing-list
+            .col-sm-9.col-md-9.col-lg-8
                 each item in results.listings
                         .col-sm-12.col-md-12.col-lg-12
                             .div.listing-card
