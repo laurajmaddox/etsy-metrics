@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var constants = require('./constants');
 var dashboard = require('./dashboard');
 var helpers = require('./utils')
 
@@ -21,18 +22,21 @@ router.get('/search', function (req, res, next) {
 /* GET dashboard view for a tag search */
 router.get('/tag/:slug', function (req, res, next) {
     var tag = req.params.slug;
+    var sort = req.query.sort || 'views';
     dashboard.cacheGet(tag, function (results) {
-        if (!results) {
+        if (results) {
+            results = new Results(helpers.tagFromSlug(tag), results.total, results, true);
+            res.render('dashboard', {results: results.sortBy(constants.SORT_KEYS[sort])});
+        } else {
             dashboard.etsyGet(
                 helpers.tagFromSlug(tag),
                 req.app.locals.config.apiKey,
                 function (results) {
+                    results = results.sortBy(constants.SORT_KEYS[sort]);
                     dashboard.cacheSet(tag, results);
                     res.render('dashboard', {results: results});
                 }
             );
-        } else {
-            res.render('dashboard', {results: results});
         }   
     });
 });
