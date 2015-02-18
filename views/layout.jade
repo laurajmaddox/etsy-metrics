@@ -15,6 +15,17 @@ html
     .navbar.navbar-default
         .container
             .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='nav-collapsed-content')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
                 a.navbar-brand(href="/") ETSY SELLER METRICS
+            .collapse.navbar-collapse#nav-collapsed-content
+                form.navbar-form.navbar-right.nav-search(role='search', name='search-form', action='/search', method='GET')
+                    .form-group
+                        input.form-control.input-sm(type='text', name='tag', placeholder='Find listings by tag')
+                    button.btn.btn-sm.btn-nav-search(type='submit')
+                        span.glyphicon.glyphicon-search
 
     block content
