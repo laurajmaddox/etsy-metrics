@@ -1,3 +1,5 @@
+'use strict';
+
 /* 
 ============================================================= 
 Dashboard view controller + helper functions

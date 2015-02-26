@@ -1,8 +1,10 @@
+'use strict';
+
 /* 
 ============================================================= 
 Results object for listings + stats from Etsy API response
 =============================================================
-*/ 
+*/
 
 var Results = function (searchTerm, total, results, from_cache) {
     this.searchTerm = searchTerm;
@@ -14,24 +16,26 @@ var Results = function (searchTerm, total, results, from_cache) {
         this.tagsSorted = results.tagsSorted;
     } else {
         this.viewsDaily = 0;
-        var tagCounts = {};
+        var creationDate, i, k, key, listing, listingAge,
+            listingViewsDaily, tagCounts;
+        tagCounts = {};
 
-        for (i in results) {
-            var listing = results[i];
+        for (i = 0; i < results.length; i += 1) {
+            listing = results[i];
 
             // Add readable creation date to listing object
-            var creationDate = new Date(listing.original_creation_tsz * 1000);
-            listing['creationDate'] = creationDate.toDateString().slice(4)
+            creationDate = new Date(listing.original_creation_tsz * 1000);
+            listing.creationDate = creationDate.toDateString().slice(4);
 
             // Calculate + add average daily views to listing object
-            var listingAge = Math.round((Date.now() - creationDate) / 86400000) || 1;
-            var listingViewsDaily = Math.round(listing.views / listingAge);
+            listingAge = Math.round((Date.now() - creationDate) / 86400000) || 1;
+            listingViewsDaily = Math.round(listing.views / listingAge);
 
-            listing['viewsDaily'] = listingViewsDaily;
+            listing.viewsDaily = listingViewsDaily;
             this.viewsDaily += listingViewsDaily;
 
             // Tally listing's tags in total counts
-            for (k in listing.tags) {
+            for (k = 0; k < listing.tags.length; k += 1) {
                 key = listing.tags[k].toLowerCase();
                 tagCounts[key] = (tagCounts[key] || 0) + 1;
             }
@@ -40,17 +44,21 @@ var Results = function (searchTerm, total, results, from_cache) {
         this.listings = results;
         this.tagsSorted = this.sortTags(tagCounts);
     }
-}
+};
 
 Results.prototype.sortTags = function (counts) {
-    var tags = [];
-    for (var key in counts) {
-        tags.push([key, counts[key]]);
-    } 
-    return tags.sort(function(a, b) {
+    var key, tags;
+    tags = [];
+
+    for (key in counts) {
+        if (counts.hasOwnProperty(key)) {
+            tags.push([key, counts[key]]);
+        }
+    }
+    return tags.sort(function (a, b) {
         return b[1] - a[1];
     });
-}
+};
 
 Results.prototype.sortBy = function (sort_by) {
     this.listings = (this.listings || []).sort(function (a, b) {
