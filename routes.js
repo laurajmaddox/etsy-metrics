@@ -1,9 +1,15 @@
+/* 
+============================================================= 
+App GET + POST routes
+=============================================================
+*/
+
 var express = require('express');
 var router = express.Router();
 
 var constants = require('./constants');
 var dashboard = require('./dashboard');
-var helpers = require('./utils')
+var helpers = require('./utils');
 
 var Results = require('./results');
 
@@ -38,7 +44,7 @@ router.get('/tag/:slug', function (req, res, next) {
                     res.render('dashboard', {results: results});
                 }
             );
-        }   
+        }
     });
 });
 
