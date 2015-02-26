@@ -6,7 +6,7 @@ block js-from-view
 
 
 block content
-    .container-fluid.summary-stats
+    .container-fluid.stat-summary
         .container
             .row
                 .col-sm-4.col-md-4.col-lg-3
@@ -19,21 +19,21 @@ block content
                 .col-sm-3.col-md-2.col-lg-2
                     .row
                         .col-sm-12.col-md-12.col-lg-12
-                            h2 #{results.total}
+                            h2.highlight #{results.total}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 TOTAL LISTINGS
                 .col-sm-3.col-md-2.col-lg-2
                     .row
                         .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.tagsSorted.length}
+                            h2.highlight !{results.tagsSorted.length}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 TAG SUGGESTIONS
                 .col-sm-2.col-md-2.col-lg-2
                     .row
                         .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.viewsDaily}
+                            h2.highlight !{results.viewsDaily}
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 AVERAGE DAILY VIEWS
@@ -47,14 +47,14 @@ block content
                     li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
                     li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
         .row
-            .col-sm-3.col-md-3.col-lg-4.tag-list    
+            .col-sm-3.col-md-3.col-lg-4.list-tags    
                 each tag in results.tagsSorted
                     .row
                         .col-sm-10.col-md-6.col-lg-6.h4 
                             a(href='/search?tag=#{tag[0]}') !{tag[0]}
                         .hidden-sm.col-md-5.col-lg-5
                             .percent-bar
-                                .percentage(style="width: #{tag[1]}%")
+                                .fill(style="width: #{tag[1]}%")
                         .col-sm-2.col-md-1.col-lg-1.percent-text
                             span #{tag[1]}
                             span.small %
@@ -63,7 +63,7 @@ block content
                         .col-sm-12.col-md-12.col-lg-12
                             .div.listing-card
                                 .row
-                                    .col-sm-3.col-md-3.col-lg-3.img-column
+                                    .col-sm-3.col-md-3.col-lg-3.img
                                         img(src='#{item.MainImage.url_170x135}').img-responsive
                                     .col-sm-9.col-md-9.col-lg-9
                                         .row
@@ -79,8 +79,8 @@ block content
                                                 | !{item.creationDate}
                                                 span.small.pad-left PRICE:&nbsp;&nbsp;
                                                 | $!{item.price}
-                                                span.small.daily-views.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span.daily-views !{item.viewsDaily}
+                                                span.small.highlight.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
+                                                span.highlight !{item.viewsDaily}
                                             .visible-sm.col-sm-12.small-stat-row
                                                 span.small VIEWS:&nbsp;&nbsp;
                                                 | !{item.views} 
@@ -96,8 +96,8 @@ block content
                                         .row.hidden-sm
                                             .col-md-12.col-lg-12
                                                 each tag in item.tags     
-                                                    a(href='/search?tag=#{tag}').word-tag #{tag}
+                                                    a(href='/search?tag=#{tag}').tag #{tag}
                                 .row.visible-sm
-                                    .col-sm-12.small-tag-row
+                                    .col-sm-12.sm-view-tags
                                         each tag in item.tags     
-                                            .word-tag #{tag}
+                                            .tag #{tag}

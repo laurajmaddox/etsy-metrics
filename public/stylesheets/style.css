@@ -1,17 +1,23 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
+
+/*
+=================================================
+Base styling
+=================================================
+*/
+
 body {
     background-color: #f5f5f5;
     font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
 }
 
-
 .navbar {
     background-color: #fbfbfb;
     /* box-shadow: 0 1px 3px rgba(0,0,0,0.04); */
     height: 60px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     padding-top: 7px;
 }
 
@@ -27,6 +33,19 @@ body {
     letter-spacing: 4px;
 }
 
+.navbar .search input {
+    border-radius: 30px;
+    min-width: 230px;
+}
+
+.navbar .search .btn {
+    background-color: transparent;
+    color: #999;
+    font-size: 16px;
+    margin-left: 4px;
+    padding: 0;
+}
+
 
 /*
 =================================================
@@ -34,10 +53,10 @@ Index view
 =================================================
 */
 
-.search-form {
-    margin: 150px 0px;
+.landing-search {
+    margin: 150px 0;
 }
-.search-form .btn {
+.landing-search .btn {
     background-color: #f08777;
     border-color: #f08777;
     box-shadow: 0 2px 1px #9f6158;
@@ -54,52 +73,25 @@ Dashboard view
 =================================================
 */
 
-.summary-stats {
-    background-color: #eee;
-    padding: 15px 0px 25px 0px;
-}
-
-.summary-stats h2 {
+.highlight {
     color: #e74c3c;
 }
 
-.summary-stats h2, 
-.summary-stats h3 {
-    margin-bottom: 0px;
+/* Summary statistics in container below navbar */
+.stat-summary {
+    background-color: #eee;
+    padding: 15px 0 25px 0;
+}
+
+.stat-summary h2, 
+.stat-summary h3 {
+    margin-bottom: 0;
     line-height: 28px;
 }
 
-.tag-list .h4 {
-    font-size: 15px;
-}
-
-.tag-list a {
-    color: #333;
-}
-
-.percent-bar {
-    background-color: #ddd;
-    border-radius: 2px;
-    height: 5px;
-    margin-top: 16px;
-}
-
-.percent-bar .percentage {
-    background-color: #e74c3c;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-    height: 5px;
-}
-
-.percent-text {
-    color: #666;
-    font-size: 14px;
-    padding-left: 0px;
-    padding-top: 7px;
-}
-
+/* Bootstrap pills for sorting options */
 .nav-pills {
-    margin: 30px 0px 12px 0px;
+    margin: 30px 0 12px 0;
 }
 
 .nav-pills>li {
@@ -121,6 +113,35 @@ Dashboard view
     color: #888;
 }
 
+/* Tag suggestion list in left column */
+.list-tags .h4,
+.list-tags a {
+    color: #333;
+    font-size: 15px;
+}
+
+.percent-bar {
+    background-color: #ddd;
+    border-radius: 2px;
+    height: 5px;
+    margin-top: 16px;
+}
+
+.percent-bar .fill {
+    background-color: #e74c3c;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    height: 5px;
+}
+
+.percent-text {
+    color: #666;
+    font-size: 14px;
+    padding-left: 0;
+    padding-top: 7px;
+}
+
+/* Cards for Etsy listing results */
 .listing-card {
     background-color: #fff;
     border-radius: 3px;
@@ -135,8 +156,8 @@ Dashboard view
     color: #000;
 }
 
-.listing-card .img-column {
-    padding-right: 0px;
+.listing-card .img {
+    padding-right: 0;
 }
 
 .listing-card .small {
@@ -144,49 +165,33 @@ Dashboard view
     line-height: 28px;
 }
 
-.listing-card .small-stat-row {
-    margin-top: 5px;
-}
-
-.listing-card .small-stat-row .small {
-    line-height: 16px;
-}
-
-.listing-card .daily-views {
-    color: #e74c3c;
-}
-
 .listing-card .small.pad-left {
     margin-left: 8px;
 }
 
-.listing-card .small-tag-row {
-    padding-top: 8px;
-}
-
-.listing-card .word-tag {
+.listing-card .tag {
     background-color: #efefef;
     color: #999;
     display: inline-block;
     font-size: 11px;
-    margin: 0px 4px 4px 0px;
+    margin: 0 4px 4px 0;
     padding: 3px 5px 5px 5px;
 }
-.listing-card a.word-tag:hover {
+
+.listing-card a.tag:hover {
     background-color: #f8f8f8;
     text-decoration: none;
 }
 
-
-.nav-search input {
-    border-radius: 30px;
-    min-width: 230px;
+/* Listing card styling for Bootstrap small view */
+.listing-card .sm-view-stats {
+    margin-top: 5px;
 }
 
-.nav-search>.btn {
-    background-color: transparent;
-    color: #999;
-    font-size: 16px;
-    margin-left: 4px;
-    padding: 0px;
+.listing-card .sm-view-stats .small {
+    line-height: 16px;
+}
+
+.listing-card .sm-view-tags {
+    padding-top: 8px;
 }
