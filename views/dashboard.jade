@@ -50,7 +50,8 @@ block content
             .col-sm-3.col-md-3.col-lg-4.tag-list    
                 each tag in results.tagsSorted
                     .row
-                        .col-sm-10.col-md-6.col-lg-6.h4 !{tag[0]}
+                        .col-sm-10.col-md-6.col-lg-6.h4 
+                            a(href='/search?tag=#{tag[0]}') !{tag[0]}
                         .hidden-sm.col-md-5.col-lg-5
                             .percent-bar
                                 .percentage(style="width: #{tag[1]}%")
@@ -95,7 +96,7 @@ block content
                                         .row.hidden-sm
                                             .col-md-12.col-lg-12
                                                 each tag in item.tags     
-                                                    .word-tag #{tag}
+                                                    a(href='/search?tag=#{tag}').word-tag #{tag}
                                 .row.visible-sm
                                     .col-sm-12.small-tag-row
                                         each tag in item.tags     

@@ -73,6 +73,10 @@ Dashboard view
     font-size: 15px;
 }
 
+.tag-list a {
+    color: #333;
+}
+
 .percent-bar {
     background-color: #ddd;
     border-radius: 2px;
@@ -168,6 +172,11 @@ Dashboard view
     margin: 0px 4px 4px 0px;
     padding: 3px 5px 5px 5px;
 }
+.listing-card a.word-tag:hover {
+    background-color: #f8f8f8;
+    text-decoration: none;
+}
+
 
 .nav-search input {
     border-radius: 30px;
