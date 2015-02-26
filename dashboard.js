@@ -1,3 +1,9 @@
+/* 
+============================================================= 
+Dashboard view controller + helper functions
+=============================================================
+*/
+
 var request = require('request');
 
 var helpers = require('./utils');
@@ -14,7 +20,7 @@ var createRequestUrl = function (search_term, api_key) {
   var fields = {
     'limit': '100',
     'tags': search_term,
-    'fields': 'title,price,tags,views,num_favorers,original_creation_tsz',
+    'fields': 'title,price,tags,views,num_favorers,original_creation_tsz,url',
     'sort_on': 'score',
     'includes': 'MainImage(url_170x135)',
     'api_key': api_key

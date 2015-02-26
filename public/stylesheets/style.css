@@ -127,6 +127,10 @@ Dashboard view
     padding: 5px;
 }
 
+.listing-card a {
+    color: #000;
+}
+
 .listing-card .img-column {
     padding-right: 0px;
 }

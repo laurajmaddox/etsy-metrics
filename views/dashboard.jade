@@ -66,7 +66,8 @@ block content
                                         img(src='#{item.MainImage.url_170x135}').img-responsive
                                     .col-sm-9.col-md-9.col-lg-9
                                         .row
-                                            .col-md-12.col-lg-12 !{item.title}
+                                            .col-md-12.col-lg-12 
+                                                a(href='#{item.url}', target='_blank') !{item.title}
                                         .row
                                             .hidden-sm.col-md-12.col-lg-12
                                                 span.small VIEWS:&nbsp;&nbsp;
