@@ -15,7 +15,7 @@ body {
 
 .navbar {
     background-color: #fbfbfb;
-    /* box-shadow: 0 1px 3px rgba(0,0,0,0.04); */
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
     height: 60px;
     margin-bottom: 0;
     padding-top: 7px;
@@ -53,17 +53,37 @@ Index view
 =================================================
 */
 
-.landing-search {
-    margin: 150px 0;
-}
-.landing-search .btn {
-    background-color: #f08777;
-    border-color: #f08777;
-    box-shadow: 0 2px 1px #9f6158;
+.landing-text h1,
+.landing-text h3 {
     color: #fff;
-    letter-spacing: 1px;
-    margin-top: 10px;
-    padding: 6px;
+    font-weight: normal;
+}
+
+.landing-text h1 {
+    font-size: 48px;
+    margin-top: 100px;
+}
+
+.landing-text h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.landing-search {
+    margin: 40px auto;
+}
+
+.landing-search .input-group .form-control {
+    border-bottom-left-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+    height: 38px;
+    min-width: 300px;
+}
+
+.landing-search .btn {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
 }
 
 

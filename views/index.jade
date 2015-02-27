@@ -1,11 +1,25 @@
 extends layout
 
-block content
-    .row
-        .col-md-4.col-md-offset-4
-            form(name="search-form", action="/search", method="GET").landing-search
-                .form-group
-                    label.sr-only(for="tag")
-                    input(type="text", name="tag", placeholder="Search for a tag", autofocus="autofocus").form-control
-                    input(type="submit", value="Submit").btn.col-md-12
+block style-custom
+    style.
+        body {
+            background-color: #81cfe0;
+        }
 
+block content
+    .container
+        .row
+            .col-sm-10.col-sm-offset-1.landing-text.text-center
+                h1 Search by tag.
+                h3 Get stats + tag suggestions based on
+                    br
+                    | the 100 listings with the highest Etsy relevancy scores.
+        .row
+            .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2.text-center
+                form(name="search-form", action="/search", method="GET").form-inline.landing-search
+                    .input-group
+                        label.sr-only(for="tag")
+                        input(type="text", name="tag", placeholder="Search for tag (max 20 characters)", autofocus="autofocus").form-control
+                        span.input-group-btn
+                            button(type="submit").btn
+                                span.glyphicon.glyphicon-search

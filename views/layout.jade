@@ -11,6 +11,8 @@ html
     script(src='/bootstrap/js/bootstrap.min.js')
     script(src='/js/base.js')
 
+    block style-custom
+
   body
     .navbar.navbar-default
         .container
@@ -27,5 +29,17 @@ html
                         input.form-control.input-sm(type='text', name='tag', placeholder='Find listings by tag')
                     button.btn.btn-sm(type='submit')
                         span.glyphicon.glyphicon-search
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='#') Help
+                    li.dropdown
+                        a(href='TODO').dropdown-toggle(data-toggle='dropdown', role='button', aria-expanded='false') About
+                            span.caret
+                        ul.dropdown-menu(role='menu')
+                            li
+                                a(href='TODO') Info
+                            li.divider
+                            li
+                                a(href='TODO') Contact
 
     block content
