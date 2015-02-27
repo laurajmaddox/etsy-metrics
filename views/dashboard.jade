@@ -75,8 +75,8 @@ block content
                                                 | !{item.creationDate}
                                                 span.small.pad-left PRICE:&nbsp;&nbsp;
                                                 | $!{item.price}
-                                                span.small.highlight.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span.highlight !{item.viewsDaily}
+                                                span.small.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
+                                                span !{item.viewsDaily}
                                             .visible-sm.col-sm-12.small-stat-row
                                                 span.small VIEWS:&nbsp;&nbsp;
                                                 | !{item.views} 
@@ -87,8 +87,8 @@ block content
                                                 br
                                                 span.small PRICE:&nbsp;&nbsp;
                                                 | $!{item.price}
-                                                span.small.daily-views.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span.daily-views !{item.viewsDaily}
+                                                span.small.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
+                                                span !{item.viewsDaily}
                                         .row.hidden-sm
                                             .col-md-12.col-lg-12
                                                 each tag in item.tags     
