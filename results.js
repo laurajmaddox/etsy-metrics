@@ -17,11 +17,12 @@ var Results = function (searchTerm, total, results, from_cache) {
     } else {
         this.viewsDaily = 0;
         var creationDate, i, k, key, listing, listingAge,
-            listingViewsDaily, tagCounts;
+            listingViewsDaily, relevancy, tagCounts;
         tagCounts = {};
 
         for (i = 0; i < results.length; i += 1) {
             listing = results[i];
+            listing.relevancy = results.length - i;
 
             // Add readable creation date to listing object
             creationDate = new Date(listing.original_creation_tsz * 1000);

@@ -39,6 +39,7 @@ block content
                     li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
                     li#sort-price(role='presentation'): a(href='?sort=price') PRICE
                     li#sort-creation(role='presentation'): a(href='?sort=creation') MOST RECENT
+                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') MOST RELEVANT
                     li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
                     li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
         .row
@@ -67,7 +68,7 @@ block content
                                         .row
                                             .hidden-sm.col-md-12.col-lg-12
                                                 span.small VIEWS:&nbsp;&nbsp;
-                                                | !{item.views} 
+                                                | !{item.views}
                                                 span.small.pad-left FAVS:&nbsp;&nbsp;
                                                 | !{item.num_favorers} 
                                                 span.small.pad-left CREATED:&nbsp;&nbsp;
