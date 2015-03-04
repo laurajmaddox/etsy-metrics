@@ -9,12 +9,12 @@ Base styling
 */
 
 body {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
     font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
 }
 
 .navbar {
-    background-color: #fbfbfb;
+    background-color: #fcfcfc;
     box-shadow: 0 1px 3px rgba(0,0,0,.06);
     height: 60px;
     margin-bottom: 0;
@@ -94,13 +94,13 @@ Dashboard view
 */
 
 .highlight {
-    color: #e74c3c;
+    color: #fd6133;
 }
 
 /* Summary statistics in container below navbar */
 .stat-summary {
-    background-color: #eee;
-    padding-top: 30px;
+    background-color: #efefef;
+    padding-top: 35px;
 }
 
 .stat-summary h2, 
@@ -111,7 +111,7 @@ Dashboard view
 
 /* Tabs to toggle result panes */
 .toggle-results {
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .nav-tabs.nav-justified>li>a {
@@ -123,7 +123,7 @@ Dashboard view
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, .03);
     color: #444;
 }
@@ -132,16 +132,16 @@ Dashboard view
 .nav-tabs.nav-justified>.active>a:focus,
 .nav-tabs.nav-justified>.active>a:hover {
     color: #444;
-    border: 1px solid #f9f9f9;
+    border: 1px solid #fafafa;
 }
 
 .tab-pane {
-    background-color: #f9f9f9;
+    background-color: #fafafa;
 }
 
 /* Bootstrap pills for sorting options */
 .sort-listings .nav-pills {
-    margin: 70px 0 20px 0;
+    margin: 65px 0 20px 0;
 }
 
 .sort-listings .nav-pills>li {
@@ -182,7 +182,7 @@ Dashboard view
 }
 
 .percent-bar .fill {
-    background-color: #e74c3c;
+    background-color: #fd6133;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     height: 5px;
