@@ -32,28 +32,27 @@ block content
                     .row
                         .col-sm-12.col-md-12.col-lg-12
                             h6 AVERAGE DAILY VIEWS
+        .container-fluid
+            .row
+                .col-lg-5.col-lg-offset-1.toggle-results
+                    div(role='tabpanel')
+                        ul.nav.nav-tabs.nav-justified(role='tablist')
+                            li.active(role='presentation')
+                                a(href='#home', aria-controls='home', role='tab', data-toggle='tab').small TAGS
+                            li(role='presentation')
+                                a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab').small LISTINGS
     .container
         .row
-            .col-sm-12.col-md-12.col-lg-12
-                ul.nav.nav-pills
-                    li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
-                    li#sort-price(role='presentation'): a(href='?sort=price') PRICE
-                    li#sort-creation(role='presentation'): a(href='?sort=creation') MOST RECENT
-                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') MOST RELEVANT
-                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
-                    li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
+            .col-lg-12
+                .tab-content
+                    .tab-pane.active(role='tabpanel', id='home')
+                        include dashboard-tags
+                    .tab-pane(role='tabpanel', id='profile')
+                        include dashboard-listings
+                            
+
+    .container
         .row
-            .col-sm-3.col-md-3.col-lg-4.list-tags    
-                each tag in results.tagsSorted
-                    .row
-                        .col-sm-10.col-md-6.col-lg-6.h4 
-                            a(href='/search?tag=#{tag[0]}') !{tag[0]}
-                        .hidden-sm.col-md-5.col-lg-5
-                            .percent-bar
-                                .fill(style="width: #{tag[1]}%")
-                        .col-sm-2.col-md-1.col-lg-1.percent-text
-                            span #{tag[1]}
-                            span.small %
             .col-sm-9.col-md-9.col-lg-8
                 each item in results.listings
                         .col-sm-12.col-md-12.col-lg-12
