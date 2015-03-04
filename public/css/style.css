@@ -100,7 +100,7 @@ Dashboard view
 /* Summary statistics in container below navbar */
 .stat-summary {
     background-color: #efefef;
-    padding-top: 35px;
+    padding-top: 30px;
 }
 
 .stat-summary h2, 
@@ -111,7 +111,7 @@ Dashboard view
 
 /* Tabs to toggle result panes */
 .toggle-results {
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 .nav-tabs.nav-justified>li>a {
@@ -141,7 +141,7 @@ Dashboard view
 
 /* Bootstrap pills for sorting options */
 .sort-listings .nav-pills {
-    margin: 65px 0 20px 0;
+    margin: 70px 0 20px 0;
 }
 
 .sort-listings .nav-pills>li {
@@ -159,7 +159,7 @@ Dashboard view
 .sort-listings .nav-pills>li.active>a, 
 .sort-listings .nav-pills>li.active>a:focus, 
 .sort-listings .nav-pills>li.active>a:hover {
-    background-color: #e5e5e5;
+    background-color: #e7e7e7;
     color: #888;
 }
 
@@ -198,7 +198,7 @@ Dashboard view
 .listing-card {
     background-color: #fff;
     border-radius: 3px;
-    color: #000;
+    color: #444;
     box-shadow: 1px 1px 1px #e9e9e9;
     font-size: 12px;
     margin-bottom: 20px;
@@ -229,8 +229,8 @@ Dashboard view
 }
 
 .listing-card .tag {
-    background-color: #efefef;
-    color: #999;
+    background-color: #f3f3f3;
+    color: #888;
     display: inline-block;
     font-size: 11px;
     margin: 0 4px 4px 0;
