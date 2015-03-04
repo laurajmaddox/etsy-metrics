@@ -18,7 +18,7 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,.06);
     height: 60px;
     margin-bottom: 0;
-    padding-top: 7px;
+    padding-top: 6px;
 }
 
 .navbar-default {
@@ -28,7 +28,7 @@ body {
 .navbar-default .navbar-brand {
     color: #555;
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: 4px;
 }
@@ -116,7 +116,8 @@ Dashboard view
 
 .nav-tabs.nav-justified>li>a {
     border-bottom: none;
-    color: #999;
+    color: #888;
+    font-size: 13px;
 }
 
 .nav-tabs>li.active>a,
@@ -124,13 +125,13 @@ Dashboard view
 .nav-tabs>li.active>a:hover {
     background-color: #f9f9f9;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, .03);
-    color: #666;
+    color: #444;
 }
 
 .nav-tabs.nav-justified>.active>a,
 .nav-tabs.nav-justified>.active>a:focus,
 .nav-tabs.nav-justified>.active>a:hover {
-    color: #666;
+    color: #444;
     border: 1px solid #f9f9f9;
 }
 
@@ -140,12 +141,12 @@ Dashboard view
 
 /* Bootstrap pills for sorting options */
 .sort-listings .nav-pills {
-    margin: 30px 0 12px 0;
+    margin: 70px 0 20px 0;
 }
 
 .sort-listings .nav-pills>li {
     float: right;
-    font-size: 9px;
+    font-size: 10px;
     margin-right: 15px;
 }
 
@@ -200,24 +201,30 @@ Dashboard view
     color: #000;
     box-shadow: 1px 1px 1px #e9e9e9;
     font-size: 12px;
-    margin-bottom: 15px;
-    padding: 5px;
+    margin-bottom: 20px;
+    padding: 8px;
+}
+
+.listing-card .col-lg-3 {
+    width: 200px;
+}
+
+.listing-card .col-lg-9 {
+    padding-left: 5px;
+    padding-top: 4px;
+    width: 720px;
 }
 
 .listing-card a {
     color: #000;
 }
 
-.listing-card .img {
-    padding-right: 0;
-}
-
 .listing-card .small {
     font-size: 9px;
-    line-height: 28px;
 }
 
 .listing-card .small.pad-left {
+    line-height: 30px;
     margin-left: 8px;
 }
 
@@ -235,18 +242,6 @@ Dashboard view
     text-decoration: none;
 }
 
-/* Listing card styling for Bootstrap small view */
-.listing-card .sm-view-stats {
-    margin-top: 5px;
-}
-
-.listing-card .sm-view-stats .small {
-    line-height: 16px;
-}
-
-.listing-card .sm-view-tags {
-    padding-top: 8px;
-}
 
 .explanation {
     color: #777;

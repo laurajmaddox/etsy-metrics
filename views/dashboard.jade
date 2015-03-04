@@ -38,61 +38,14 @@ block content
                     div(role='tabpanel')
                         ul.nav.nav-tabs.nav-justified(role='tablist')
                             li.active(role='presentation')
-                                a(href='#home', aria-controls='home', role='tab', data-toggle='tab').small TAGS
+                                a(href='#listings', aria-controls='listings', role='tab', data-toggle='tab') LISTINGS
                             li(role='presentation')
-                                a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab').small LISTINGS
+                                a(href='#tags', aria-controls='tags', role='tab', data-toggle='tab') TAGS
     .container
         .row
             .col-lg-12
                 .tab-content
-                    .tab-pane.active(role='tabpanel', id='home')
-                        include dashboard-tags
-                    .tab-pane(role='tabpanel', id='profile')
+                    .tab-pane.active(role='tabpanel', id='listings')
                         include dashboard-listings
-                            
-
-    .container
-        .row
-            .col-sm-9.col-md-9.col-lg-8
-                each item in results.listings
-                        .col-sm-12.col-md-12.col-lg-12
-                            .div.listing-card
-                                .row
-                                    .col-sm-3.col-md-3.col-lg-3.img
-                                        img(src='#{item.MainImage.url_170x135}').img-responsive
-                                    .col-sm-9.col-md-9.col-lg-9
-                                        .row
-                                            .col-md-12.col-lg-12 
-                                                a(href='#{item.url}', target='_blank') !{item.title}
-                                        .row
-                                            .hidden-sm.col-md-12.col-lg-12
-                                                span.small VIEWS:&nbsp;&nbsp;
-                                                | !{item.views}
-                                                span.small.pad-left FAVS:&nbsp;&nbsp;
-                                                | !{item.num_favorers} 
-                                                span.small.pad-left CREATED:&nbsp;&nbsp;
-                                                | !{item.creationDate}
-                                                span.small.pad-left PRICE:&nbsp;&nbsp;
-                                                | $!{item.price}
-                                                span.small.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span !{item.viewsDaily}
-                                            .visible-sm.col-sm-12.small-stat-row
-                                                span.small VIEWS:&nbsp;&nbsp;
-                                                | !{item.views} 
-                                                span.small.pad-left FAVS:&nbsp;&nbsp;
-                                                | !{item.num_favorers} 
-                                                span.small.pad-left CREATED:&nbsp;&nbsp;
-                                                | !{item.creationDate}
-                                                br
-                                                span.small PRICE:&nbsp;&nbsp;
-                                                | $!{item.price}
-                                                span.small.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                                span !{item.viewsDaily}
-                                        .row.hidden-sm
-                                            .col-md-12.col-lg-12
-                                                each tag in item.tags     
-                                                    a(href='/search?tag=#{tag}').tag #{tag}
-                                .row.visible-sm
-                                    .col-sm-12.sm-view-tags
-                                        each tag in item.tags     
-                                            .tag #{tag}
+                    .tab-pane(role='tabpanel', id='tags')
+                        include dashboard-tags                            

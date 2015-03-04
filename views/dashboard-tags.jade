@@ -4,6 +4,7 @@
             h3 How it works
             p Below is a list of the !{results.tagsSorted.length} tags used by the #{results.total < 100 ? results.total : 100} most relevant listings (as ranked by Etsy) matching your search term, sorted by frequency of use. Your search term may not be the most common result due to the fact that Etsy returns listings using the exact tag + longer variations containing the search term. For example, a search for 'gold' returns listings using the tags 'gold', 'gold necklace', 'black and gold', etc.
             p Click on a tag to start a new search using that keyword. 
+    .row    
         .col-lg-6.col-lg-offset-3.list-tags
             each tag in results.tagsSorted
                 .row
