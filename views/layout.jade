@@ -26,7 +26,7 @@ html
             .collapse.navbar-collapse#nav-collapsed-content
                 form.navbar-form.navbar-right.search(role='search', name='search-form', action='/search', method='GET')
                     .form-group
-                        input.form-control.input-sm(type='text', name='tag', placeholder='Find listings by tag')
+                        input.form-control.input-sm(type='text', name='tag', maxlength='20', placeholder='Find listings by tag')
                     button.btn.btn-sm(type='submit')
                         span.glyphicon.glyphicon-search
                 ul.nav.navbar-nav.navbar-right

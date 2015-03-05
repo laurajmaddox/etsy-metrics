@@ -4,6 +4,7 @@ block style-custom
     style.
         body {
             background-color: #eb7654;
+            color: #fff
         }
 
 block content
@@ -19,7 +20,9 @@ block content
                 form(name="search-form", action="/search", method="GET").form-inline.landing-search
                     .input-group
                         label.sr-only(for="tag")
-                        input(type="text", name="tag", placeholder="Search for tag (max 20 characters)", autofocus="autofocus").form-control
+                        input(type="text", name="tag", maxlength="20", autofocus="autofocus").form-control
                         span.input-group-btn
                             button(type="submit").btn
                                 span.glyphicon.glyphicon-search
+        .row
+            .col-lg-12.text-center Search is limited to 20 characters (the max length for Etsy tags)
