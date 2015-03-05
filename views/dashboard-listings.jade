@@ -1,13 +1,16 @@
 .container
     .row.sort-listings
         .col-lg-10.col-lg-offset-1
-            ul.nav.nav-pills
-                li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
-                li#sort-price(role='presentation'): a(href='?sort=price') PRICE
-                li#sort-creation(role='presentation'): a(href='?sort=creation') MOST RECENT
-                li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') MOST RELEVANT
-                li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
-                li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
+            if results.total == 0
+                h3 It looks like your term is one of a kind! Etsy couldn't find any listings using that tag.
+            else
+                ul.nav.nav-pills
+                    li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
+                    li#sort-price(role='presentation'): a(href='?sort=price') PRICE
+                    li#sort-creation(role='presentation'): a(href='?sort=creation') MOST RECENT
+                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') MOST RELEVANT
+                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
+                    li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
     .row
         .col-lg-10.col-lg-offset-1
             each item in results.listings
