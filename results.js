@@ -43,17 +43,19 @@ var Results = function (searchTerm, total, results, from_cache) {
         }
         this.viewsDaily = (this.viewsDaily / (results.length || 1)).toFixed(1);
         this.listings = results;
-        this.tagsSorted = this.sortTags(tagCounts);
+        this.tagsSorted = this.sortTags(tagCounts, total);
     }
 };
 
-Results.prototype.sortTags = function (counts) {
-    var key, tags;
+Results.prototype.sortTags = function (counts, total) {
+    var key, tags, percent;
     tags = [];
 
     for (key in counts) {
         if (counts.hasOwnProperty(key)) {
-            tags.push([key, counts[key]]);
+            total = total > 100 ? 100 : total;
+            percent = Math.round(counts[key] / total * 100);
+            tags.push([key, percent]);
         }
     }
     return tags.sort(function (a, b) {
