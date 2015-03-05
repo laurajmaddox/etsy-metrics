@@ -47,11 +47,9 @@ body {
 }
 
 
-/*
-=================================================
+/************************************************
 Index view
-=================================================
-*/
+************************************************/
 
 .landing-text h1,
 .landing-text h3 {
@@ -70,7 +68,7 @@ Index view
 }
 
 .landing-search {
-    margin: 40px auto;
+    margin: 40px auto 15px;
 }
 
 .landing-search .input-group .form-control {
@@ -101,6 +99,10 @@ Dashboard view
 .stat-summary {
     background-color: #efefef;
     padding-top: 30px;
+}
+
+.stat-summary h2 {
+    font-size: 31px;
 }
 
 .stat-summary h2, 
@@ -140,8 +142,9 @@ Dashboard view
 }
 
 /* Bootstrap pills for sorting options */
-.sort-listings .nav-pills {
-    margin: 70px 0 20px 0;
+.sort-listings {
+    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .sort-listings .nav-pills>li {
@@ -183,8 +186,7 @@ Dashboard view
 
 .percent-bar .fill {
     background-color: #fd6133;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
+    border-radius: 2px;
     height: 5px;
 }
 
@@ -238,7 +240,7 @@ Dashboard view
 }
 
 .listing-card a.tag:hover {
-    background-color: #f8f8f8;
+    background-color: #f9f9f9;
     text-decoration: none;
 }
 
