@@ -17,12 +17,12 @@ block content
                     | the 100 listings with the highest Etsy relevancy scores.
         .row
             .col-xs-10.col-xs-offset-1.col-sm-8.col-sm-offset-2.text-center
-                form(name="search-form", action="/search", method="GET").form-inline.landing-search
+                form(name='search-form', action='/search', method='GET').form-inline.landing-search
                     .input-group
-                        label.sr-only(for="tag")
-                        input(type="text", name="tag", maxlength="20", autofocus="autofocus").form-control
+                        label.sr-only(for='tag')
+                        input(type='text', name='tag', maxlength='20', autofocus='autofocus').form-control
                         span.input-group-btn
-                            button(type="submit").btn
+                            button(type='submit').btn
                                 span.glyphicon.glyphicon-search
         .row
             .col-lg-12.text-center Search is limited to 20 characters (the max length for Etsy tags)
