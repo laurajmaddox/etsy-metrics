@@ -2,7 +2,7 @@
     .row.sort-listings
         .col-lg-10.col-lg-offset-1
             if results.total == 0
-                h3 It looks like your term is one of a kind! Etsy couldn't find any listings using that tag.
+                h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
             else
                 ul.nav.nav-pills
                     li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS

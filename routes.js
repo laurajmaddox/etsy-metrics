@@ -25,6 +25,17 @@ router.get('/search', function (req, res, next) {
     res.redirect('/tag/' + tag);
 });
 
+/* GET dashboard view with no search term entered */
+router.get('/tag', function (req, res, next) {
+    var empty_results = {
+        listings: [],
+        viewsDaily: 0,
+        tagsSorted: []
+    };
+    var results = new Results('?', 0, empty_results, true)    
+    res.render('dashboard', { results: results });
+});
+
 /* GET dashboard view for a tag search */
 router.get('/tag/:slug', function (req, res, next) {
     var tag = req.params.slug;
