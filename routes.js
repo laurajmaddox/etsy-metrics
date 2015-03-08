@@ -60,7 +60,11 @@ router.get('/tag/:slug', function (req, res, next) {
 });
 
 router.get('/about', function (req, res, next) {
-    res.render('about')
+    res.render('about');
+});
+
+router.get('/help', function (req, res, next) {
+    res.render('help');
 });
 
 module.exports = router;
