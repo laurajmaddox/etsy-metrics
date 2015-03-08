@@ -137,7 +137,7 @@ Dashboard view
 /* Dashboard panel with results content */
 .panel {
     border: 0;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.07);
     margin: 0;
 }
 
@@ -279,4 +279,16 @@ Dashboard view
 
 .stat-label.muted {
     color: #e3e3e3;
+}
+
+.info-page {
+    margin-top: 70px;
+}
+
+.info-page p {
+    margin-top: 18px;
+}
+
+.info-page h1 {
+    font-weight: 300;
 }
