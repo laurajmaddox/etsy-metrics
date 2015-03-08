@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+    .container.info-page
+        .row
+            .col-lg-10.col-lg-offset-1
+                h1 How does this work?
+    
+                p This tool uses the Etsy API to search for listings using a particular tag and return the products that Etsy has rated most relevant. The statistics and tag suggestions are generated from the 100 most relevant listings (or less, if fewer than 100 products use that tag). The results are limited to 100 because it is a large enough sample to generate useful data, and this tool is primarily concerned with the strategies employed in the most successful listings (i.e. most relevant) versus every single listing that uses a certain tag.
+
+                p 
+                    strong Average Daily Views: 
+                    | This number is calculated for each listing based on the age of the product and total views since the original creation date. The statistic at the top of the results page is the average of these numbers. 
+
+                p 
+                    strong Most Relevant: 
+                    | The relevancy sorting is based on the order determined by Etsy. Your results will differ from what you see on the Etsy results page because this tool searches by tag instead of keyword, and results on the actual Etsy site incorporate factors such as location and user history. 
+
+                p I'm happy to help with questions, issues, or suggestions - e-mail me at laura@uptownhoundboutique.com or convo me via my Etsy shop 
+                    a(href='https://etsy.com/shop/uptownhoundboutique', target='_blank') UptownHoundBoutique
+                    | .
