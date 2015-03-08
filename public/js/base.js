@@ -19,8 +19,23 @@ function getUrlParameter(param) {
     }
 }
 
-/* Add active class to pill for current sort option */
 $(document).ready(function () {
+    // Add active class to pill for current sort option
     var sort = getUrlParameter('sort') || 'views';
     $('.nav-pills li#sort-' + sort).addClass('active');
+
+    // Toggle scroll to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.scroll-top').fadeIn();
+        } else {
+            $('.scroll-top').fadeOut();
+        }
+    });
+    
+    //Click event to scroll to top
+    $('.scroll-top').click(function () {
+        $('html, body').animate({scrollTop : 0}, 500);
+        return false;
+    });
 });

@@ -298,3 +298,17 @@ Dashboard view
 .info-page h1 {
     font-weight: 300;
 }
+
+/* Scroll to top arrow */
+.scroll-top {
+    text-align: center; 
+    background: none;
+    font-size: 60px;
+    color: #484848;
+    text-decoration: none;
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    display: none;
+    z-index: 999999;
+}
