@@ -1,41 +1,43 @@
-.container
-    .row.sort-listings
-        .col-lg-10.col-lg-offset-1
-            if results.total == 0
-                h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
-            else
-                ul.nav.nav-pills
-                    li#sort-daily(role='presentation'): a(href='?sort=daily') DAILY VIEWS
-                    li#sort-price(role='presentation'): a(href='?sort=price') PRICE
-                    li#sort-creation(role='presentation'): a(href='?sort=creation') MOST RECENT
-                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') MOST RELEVANT
-                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') FAVORITES
-                    li#sort-views(role='presentation'): a(href='?sort=views') VIEWS
+div
     .row
-        .col-lg-10.col-lg-offset-1
-            each item in results.listings
-                .col-lg-12
-                    .div.listing-card
-                        .row
+        .col-lg-12
+            .panel.panel-default
+                .panel-heading
+                    .row.sort-listings
+                        .col-lg-12
+                            if results.total == 0
+                                .explanation
+                                    h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
+                            else
+                                ul.nav.nav-pills
+                                    li#sort-daily(role='presentation'): a(href='?sort=daily') Daily views
+                                    li#sort-price(role='presentation'): a(href='?sort=price') Price
+                                    li#sort-creation(role='presentation'): a(href='?sort=creation') Most recent
+                                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') Most relevant
+                                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') Favorites
+                                    li#sort-views(role='presentation'): a(href='?sort=views') Views
+                .panel-body
+                    each item in results.listings
+                        .row.listing
                             .col-lg-3
                                 img(src='#{item.MainImage.url_170x135}').img-responsive
                             .col-lg-9
                                 .row
-                                    .col-lg-12 
+                                    .col-lg-12
                                         a(href='#{item.url}', target='_blank') !{item.title}
                                 .row
                                     .col-lg-12
-                                        span.small VIEWS:&nbsp;&nbsp;
-                                        | !{item.views}
-                                        span.small.pad-left FAVS:&nbsp;&nbsp;
-                                        | !{item.num_favorers} 
-                                        span.small.pad-left CREATED:&nbsp;&nbsp;
-                                        | !{item.creationDate}
-                                        span.small.pad-left PRICE:&nbsp;&nbsp;
-                                        | $!{item.price}
-                                        span.small.pad-left AVG. DAILY VIEWS:&nbsp;&nbsp;
-                                        span !{item.viewsDaily}
+                                        span.stat-label Creation date:
+                                        span.space-right !{item.creationDate}
+                                        span.stat-label Price:
+                                        span.space-right $!{item.price}
+                                        span.stat-label Views:
+                                        span.space-right !{item.views}
+                                        span.stat-label Favorites:
+                                        span.space-right !{item.num_favorers}
+                                        span.stat-label Avg. daily views:
+                                        span.space-right !{item.viewsDaily}
                                 .row
-                                    .col-md-12.col-lg-12
-                                        each tag in item.tags     
+                                    .col-lg-12
+                                        each tag in item.tags
                                             a(href='/search?tag=#{tag}').tag #{tag}

@@ -1,18 +1,26 @@
-.container
+div
     .row
-        .col-lg-10.col-lg-offset-1.text-left.explanation 
-            h3 How it works
-            p Below is a list of the tags used by the #{results.total < 100 ? results.total : 100} most relevant listings (as ranked by Etsy) matching your search term, sorted by frequency of use. Your search term may not be the most common result due to the fact that Etsy returns listings using the exact tag + longer variations containing the search term. For example, a search for 'gold' returns listings using the tags 'gold', 'gold necklace', 'black and gold', etc.
-            p Click on a tag to start a new search using that keyword. 
-    .row    
-        .col-lg-6.col-lg-offset-3.list-tags
-            each tag in results.tagsSorted
-                .row
-                    .col-lg-12.h4
-                        a(href='/search?tag=#{tag[0]}') !{tag[0]}
-                    .col-lg-12
-                        .percent-bar
-                            .fill(style='width: #{tag[1]}%')
-                    .col-lg-12.text-right.percent-text
-                        span #{tag[1]}
-                        span.small %
+        .col-lg-12
+            .panel.panel-default
+                .panel-heading
+                    .row
+                        .col-lg-12.explanation
+                            if results.total == 0
+                                h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
+                            else
+                                h3 How it works
+                                p Below is a list of the tags used by the #{results.total < 100 ? results.total : 100} most relevant listings (as ranked by Etsy) matching your search term, sorted by frequency of use. Your search term may not be the most common result due to the fact that Etsy returns listings using the exact tag + longer variations containing the search term. For example, a search for 'gold' returns listings using the tags 'gold', 'gold necklace', 'black and gold', etc.
+                                p Click on a tag to start a new search using that keyword. 
+                .panel-body
+                    .row
+                        .col-lg-6.col-lg-offset-3.list-tags
+                            each tag in results.tagsSorted
+                                .row
+                                    .col-lg-12.h4
+                                        a(href='/search?tag=#{tag[0]}') !{tag[0]}
+                                    .col-lg-12
+                                        .percent-bar
+                                            .fill(style='width: #{tag[1]}%')
+                                    .col-lg-12.text-right.percent-text
+                                        span #{tag[1]}
+                                        span.small %

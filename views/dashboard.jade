@@ -1,49 +1,37 @@
 extends layout
 
 block content
-    .container-fluid.stat-summary
+    .container-fluid
         .container
             .row
-                .col-sm-4.col-md-4.col-lg-3
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12 
-                            h3 !{results.searchTerm}
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h6 YOUR SEARCH TERM
-                .col-sm-3.col-md-2.col-lg-2
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h2 #{results.total}
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h6 TOTAL LISTINGS
-                .col-sm-3.col-md-2.col-lg-2
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.tagsSorted.length}
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h6 TAG SUGGESTIONS
-                .col-sm-2.col-md-2.col-lg-2
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h2 !{results.viewsDaily}
-                    .row
-                        .col-sm-12.col-md-12.col-lg-12
-                            h6 AVERAGE DAILY VIEWS
-        .container-fluid
+                .col-lg-4.col-lg-offset-1
+                    .stat-block.text-right
+                        span.center-block !{results.searchTerm}
+                        span.center-block.stat-label Your search term
+                .col-lg-2
+                    .stat-block.blue.text-center
+                        span.center-block !{results.total}
+                        span.center-block.stat-label.muted Total listings
+                .col-lg-2
+                    .stat-block.dark-blue.text-center
+                        span.center-block !{results.tagsSorted.length}
+                        span.center-block.stat-label.muted Tag suggestions
+                .col-lg-2
+                    .stat-block.text-center
+                        span.center-block !{results.viewsDaily}
+                        span.center-block.stat-label Average daily views
+        .container
             .row
                 .col-lg-4.col-lg-offset-1.toggle-results
                     div(role='tabpanel')
                         ul.nav.nav-tabs.nav-justified(role='tablist')
                             li.active(role='presentation')
-                                a(href='#listings', aria-controls='listings', role='tab', data-toggle='tab') LISTINGS
+                                a(href='#listings', aria-controls='listings', role='tab', data-toggle='tab') Listings
                             li(role='presentation')
-                                a(href='#tags', aria-controls='tags', role='tab', data-toggle='tab') TAGS
+                                a(href='#tags', aria-controls='tags', role='tab', data-toggle='tab') Tags
     .container
         .row
-            .col-lg-12
+            .col-lg-10.col-lg-offset-1
                 .tab-content
                     .tab-pane.active(role='tabpanel', id='listings')
                         include dashboard-listings

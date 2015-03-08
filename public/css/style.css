@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 
 
 /*
@@ -9,8 +10,12 @@ Base styling
 */
 
 body {
-    background-color: #fafafa;
+    background-color: #f3f3f3;
     font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
+}
+
+a {
+    color: #52abd2;
 }
 
 .navbar {
@@ -26,11 +31,11 @@ body {
 }
 
 .navbar-default .navbar-brand {
-    color: #555;
+    color: #484848;
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
 }
 
 .navbar .search input {
@@ -91,79 +96,128 @@ Dashboard view
 =================================================
 */
 
-.highlight {
-    color: #fd6133;
-}
-
-/* Summary statistics in container below navbar */
-.stat-summary {
-    background-color: #efefef;
-    padding-top: 30px;
-}
-
-.stat-summary h2 {
-    font-size: 31px;
-}
-
-.stat-summary h2, 
-.stat-summary h3 {
-    margin-bottom: 0;
-    line-height: 28px;
-}
-
 /* Tabs to toggle result panes */
 .toggle-results {
-    margin-top: 35px;
+    margin-top: 20px;
+    text-transform: uppercase;
 }
 
 .nav-tabs.nav-justified>li>a {
+    border-color: #f3f3f3;
     border-bottom: none;
-    color: #888;
     font-size: 13px;
 }
 
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
-    background-color: #fafafa;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, .03);
-    color: #444;
+    background-color: #f6f6f6;
+    box-shadow: 1px 0 2px rgba(0,0,0,0.07);
+    color: #595959;
+}
+
+.nav-tabs>li>a:hover {
+    background-color: transparent;
+    border-color: #f3f3f3;
+    box-shadow: none;
 }
 
 .nav-tabs.nav-justified>.active>a,
 .nav-tabs.nav-justified>.active>a:focus,
 .nav-tabs.nav-justified>.active>a:hover {
-    color: #444;
-    border: 1px solid #fafafa;
+    color: #595959;
+    border: 1px solid #f6f6f6;
 }
 
 .tab-pane {
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+/* Dashboard panel with results content */
+.panel {
+    border: 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    margin: 0;
+}
+
+.panel-default>.panel-heading {
+    background-color: #f6f6f6;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    margin: 0;
+    padding: 13px 20px;
+}
+
+.panel-default>.panel-heading .explanation {
+    color: #999;
+    font-size: 13px;
+    padding: 10px 40px 20px;
+}
+
+.panel-default>.panel-heading .explanation h3 {
+    color: #484848;
+    font-weight: 300;
+}
+
+
+.listing {
+    border-bottom: 1px solid #f0f0f0;
+    color: #484848;
+    font-size: 13px;
+    padding: 20px 10px;
+}
+
+.listing .col-lg-3 {
+    width: 205px;
+}
+
+.listing .col-lg-9 {
+    padding-right: 0;
+}
+
+.listing .stat-label {
+    margin-right: 5px;
+}
+
+.listing .space-right {
+    line-height: 26px;
+    margin-right: 20px;
+}
+
+.listing .tag {
+    background-color: #f3f3f3;
+    color: #999;
+    display: inline-block;
+    font-size: 12px;
+    margin: 7px 7px 0 0;
+    padding: 3px 7px 5px 7px;
+}
+
+.listing a.tag:hover {
     background-color: #fafafa;
+    text-decoration: none;
 }
 
 /* Bootstrap pills for sorting options */
-.sort-listings {
-    margin-bottom: 20px;
-    margin-top: 50px;
-}
-
 .sort-listings .nav-pills>li {
     float: right;
-    font-size: 10px;
-    margin-right: 15px;
+    font-size: 9px;
+    margin-left: 12px;
+    text-transform: uppercase;
 }
 
 .sort-listings .nav-pills>li>a {
     border-radius: 10px;
-    color: #999;
+    color: #b0b0b0;
     padding: 4px 10px;
 }
 
+.sort-listings .nav-pills>li>a:hover,
 .sort-listings .nav-pills>li.active>a, 
 .sort-listings .nav-pills>li.active>a:focus, 
 .sort-listings .nav-pills>li.active>a:hover {
-    background-color: #e7e7e7;
-    color: #888;
+    background-color: #e9e9e9;
+    color: #595959;
 }
 
 /* Tag suggestion list in left column */
@@ -185,7 +239,7 @@ Dashboard view
 }
 
 .percent-bar .fill {
-    background-color: #fd6133;
+    background-color: #52abd2;
     border-radius: 2px;
     height: 5px;
 }
@@ -196,60 +250,33 @@ Dashboard view
     padding-top: 7px;
 }
 
-/* Cards for Etsy listing results */
-.listing-card {
+.stat-block {
     background-color: #fff;
-    border-radius: 3px;
-    color: #444;
-    box-shadow: 1px 1px 1px #e9e9e9;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    color: #484848;
+    font-size: 36px;
+    font-weight: 300;
+    margin: 40px 0 20px 0;
+    padding: 15px 20px 20px;
+}
+
+.blue {
+    background-color: #66b5d7;
+    color: #fff;
+}
+
+.dark-blue {
+    background-color: #335397;
+    color: #fff;
+}
+
+.stat-label {
+    color: #b0b0b0;
     font-size: 12px;
-    margin-bottom: 20px;
-    padding: 8px;
+    font-weight: 400;
 }
 
-.listing-card .col-lg-3 {
-    width: 200px;
-}
-
-.listing-card .col-lg-9 {
-    padding-left: 5px;
-    padding-top: 4px;
-    width: 720px;
-}
-
-.listing-card a {
-    color: #000;
-}
-
-.listing-card .small {
-    font-size: 9px;
-}
-
-.listing-card .small.pad-left {
-    line-height: 30px;
-    margin-left: 8px;
-}
-
-.listing-card .tag {
-    background-color: #f3f3f3;
-    color: #888;
-    display: inline-block;
-    font-size: 11px;
-    margin: 0 4px 4px 0;
-    padding: 3px 5px 5px 5px;
-}
-
-.listing-card a.tag:hover {
-    background-color: #f9f9f9;
-    text-decoration: none;
-}
-
-
-.explanation {
-    color: #777;
-    margin-top: 60px;
-}
-
-.explanation h3 {
-    color: #555;
+.stat-label.muted {
+    color: #e3e3e3;
 }
