@@ -1,6 +1,6 @@
 'use strict';
 
-/* 
+/*
 ============================================================= 
 Dashboard view controller + helper functions
 =============================================================
@@ -46,7 +46,7 @@ module.exports.cacheGet = function (key, callback) {
 
 /* Add Results from Etsy API request to cache */
 module.exports.cacheSet = function (key, value, timeout) {
-    timeout = timeout || 300;
+    timeout = timeout || 600;
     memcached.set(key, value, timeout, function (err, response) {
         if (err) {
             console.log(err);
