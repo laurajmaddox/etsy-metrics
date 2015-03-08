@@ -5,17 +5,13 @@ div
                 .panel-heading
                     .row.sort-listings
                         .col-lg-12
-                            if results.total == 0
-                                .explanation
-                                    h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
-                            else
-                                ul.nav.nav-pills
-                                    li#sort-daily(role='presentation'): a(href='?sort=daily') Daily views
-                                    li#sort-price(role='presentation'): a(href='?sort=price') Price
-                                    li#sort-creation(role='presentation'): a(href='?sort=creation') Most recent
-                                    li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') Most relevant
-                                    li#sort-favorites(role='presentation'): a(href='?sort=favorites') Favorites
-                                    li#sort-views(role='presentation'): a(href='?sort=views') Views
+                            ul.nav.nav-pills
+                                li#sort-daily(role='presentation'): a(href='?sort=daily') Daily views
+                                li#sort-price(role='presentation'): a(href='?sort=price') Price
+                                li#sort-creation(role='presentation'): a(href='?sort=creation') Most recent
+                                li#sort-relevancy(role='presentation'): a(href='?sort=relevancy') Most relevant
+                                li#sort-favorites(role='presentation'): a(href='?sort=favorites') Favorites
+                                li#sort-views(role='presentation'): a(href='?sort=views') Views
                 .panel-body
                     each item in results.listings
                         .row.listing
