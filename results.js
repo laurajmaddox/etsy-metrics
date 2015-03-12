@@ -8,7 +8,7 @@ Results object for listings + stats from Etsy API response
 
 var Results = function (searchTerm, total, results, from_cache) {
     this.searchTerm = searchTerm;
-    this.total = total < 50000 ? total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '50,000+';
+    this.total = total;
 
     if (from_cache) {
         this.listings = results.listings;
@@ -86,5 +86,8 @@ Results.prototype.sortBy = function (sort_by) {
     return this;
 };
 
+Results.prototype.stringify_total = function () {
+    return this.total < 50000 ? this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '50,000+';
+}
 
 module.exports = Results;
