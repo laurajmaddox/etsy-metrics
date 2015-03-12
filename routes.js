@@ -51,7 +51,10 @@ router.get('/tag/:tag', function (req, res, next) {
         if (results && results.searchTerm === tag) {
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
-            res.render('dashboard', {results: results});
+            res.render('dashboard', {
+                results: results, 
+                error: helpers.check_empty(results.listings)
+            });
         } else {
             dashboard.etsyGet(
                 tag,
@@ -59,7 +62,10 @@ router.get('/tag/:tag', function (req, res, next) {
                 function (results) {
                     results = results.sortBy(constants.SORT_KEYS[sort]);
                     dashboard.cacheSet(cache_key, results);
-                    res.render('dashboard', {results: results});
+                    res.render('dashboard', {
+                        results: results, 
+                        error: helpers.check_empty(results.listings)
+                    });
                 },
                 next
             );

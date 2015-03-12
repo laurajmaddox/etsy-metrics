@@ -4,6 +4,15 @@ Helper functions for routes + dashboard controller
 =============================================================
 */
 
+/* Return error message for dashboard page if no lising for tag */
+module.exports.check_empty = function (listings) {
+    if (listings.length === 0) {
+        return 'Looks like your tag is one of a kind! Etsy couldn\'t find any ' 
+            + 'listings using that search term. Check to make sure your tag '
+            + 'wasn\'t misspelled or longer than 20 characters.'
+    }
+}
+
 /* Returns lowercase tag with invalid characters removed */
 module.exports.clean = function (tag) {
     tag = tag.toLowerCase()
