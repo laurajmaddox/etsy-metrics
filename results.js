@@ -20,29 +20,45 @@ var Results = function (searchTerm, total, results, from_cache) {
             listingViewsDaily, relevancy, tagCounts;
         tagCounts = {};
 
+        var nonempty_listings = [];
+
         for (i = 0; i < results.length; i += 1) {
             listing = results[i];
-            listing.relevancy = results.length - i;
 
-            // Add readable creation date to listing object
-            creationDate = new Date(listing.original_creation_tsz * 1000);
-            listing.creationDate = creationDate.toDateString().slice(4);
+            // Check if listing is empty before proceeding    
+            if (listing.title && listing.views) {
 
-            // Calculate + add average daily views to listing object
-            listingAge = Math.round((Date.now() - creationDate) / 86400000) || 1;
-            listingViewsDaily = Math.round(listing.views / listingAge);
+                listing.relevancy = results.length - i;
 
-            listing.viewsDaily = listingViewsDaily;
-            this.viewsDaily += listingViewsDaily;
+                // Save thumbnail URL or replace with blank if no image
+                listing.image_url = listing.MainImage ? listing.MainImage.url_170x135 : 'image/blank_thumbnail.png';
 
-            // Tally listing's tags in total counts
-            for (k = 0; k < listing.tags.length; k += 1) {
-                key = listing.tags[k].toLowerCase();
-                tagCounts[key] = (tagCounts[key] || 0) + 1;
+                // Add readable creation date to listing object
+                creationDate = new Date(listing.original_creation_tsz * 1000);
+                listing.creationDate = creationDate.toDateString().slice(4);
+
+                // Calculate + add average daily views to listing object
+                listingAge = Math.round((Date.now() - creationDate) / 86400000) || 1;
+                listingViewsDaily = Math.round((listing.views || 0) / listingAge);
+
+                listing.viewsDaily = listingViewsDaily;
+                this.viewsDaily += listingViewsDaily;
+
+                // Tally listing's tags in total counts
+                listing.tags = listing.tags || [];
+                for (k = 0; k < listing.tags.length; k += 1) {
+                    key = listing.tags[k].toLowerCase();
+                    tagCounts[key] = (tagCounts[key] || 0) + 1;
+                }
+            // Add to nonempty list    
+            nonempty_listings.push(listing);
             }
         }
-        this.viewsDaily = (this.viewsDaily / (results.length || 1)).toFixed(1);
-        this.listings = results;
+
+        // Save the array of listings that contained data
+        this.listings = nonempty_listings;
+        
+        this.viewsDaily = (this.viewsDaily / (nonempty_listings.length || 1)).toFixed(1);
         this.tagsSorted = this.sortTags(tagCounts, total);
     }
 };
