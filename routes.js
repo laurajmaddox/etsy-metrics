@@ -31,7 +31,7 @@ router.get('/search', function (req, res, next) {
 });
 
 /* GET empty dashboard view for empty or invalid tag query */
-router.get('/tag', function (req, res, nect) {
+router.get('/tag', function (req, res, next) {
     var results = constants.EMPTY_RESULTS_OBJECT;
     var error = 'Oops! It looks like your search was empty or included'
         + ' an invalid tag. Try starting a new search with a different tag.'
@@ -45,9 +45,10 @@ router.get('/tag/:tag', function (req, res, next) {
     }
     var tag = helpers.clean(req.params.tag);
     var sort = req.query.sort || 'views';
+    var cache_key = new Hashes.SHA1().hex(tag);
 
-    dashboard.cacheGet(tag, function (results) {
-        if (results) {
+    dashboard.cacheGet(cache_key, function (results) {
+        if (results && results.searchTerm === tag) {
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
             res.render('dashboard', {results: results});
@@ -57,7 +58,7 @@ router.get('/tag/:tag', function (req, res, next) {
                 req.app.locals.config.apiKey,
                 function (results) {
                     results = results.sortBy(constants.SORT_KEYS[sort]);
-                    dashboard.cacheSet(tag, results);
+                    dashboard.cacheSet(cache_key, results);
                     res.render('dashboard', {results: results});
                 },
                 next
