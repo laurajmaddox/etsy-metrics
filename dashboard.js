@@ -37,9 +37,6 @@ var createRequestUrl = function (search_term, api_key) {
 /* Check cache for Results object matching tag */
 module.exports.cacheGet = function (key, callback) {
     memcached.get(key, function (err, data) {
-        if (err) {
-            console.log(err);
-        }
         return callback(data);
     });
 };
@@ -47,20 +44,17 @@ module.exports.cacheGet = function (key, callback) {
 /* Add Results from Etsy API request to cache */
 module.exports.cacheSet = function (key, value, timeout) {
     timeout = timeout || 600;
-    memcached.set(key, value, timeout, function (err, response) {
-        if (err) {
-            console.log(err);
-        }
-    });
+    memcached.set(key, value, timeout, function (err, response) { });
 };
 
 /* Etsy API GET request for listings matching tag */
-module.exports.etsyGet = function (tag, api_key, callback) {
+module.exports.etsyGet = function (tag, api_key, callback, next) {
     var url = createRequestUrl(tag, api_key);
     request({url: url, json: true}, function (err, response, etsy_data) {
-        if (err) {
-            throw err;
+        if (response.statusCode == 200) {
+            return callback(new Results(tag, etsy_data.count, etsy_data.results));
+        } else {
+            return next({statusCode: response.statusCode, message: etsy_data});
         }
-        return callback(new Results(tag, etsy_data.count, etsy_data.results));
     });
 };

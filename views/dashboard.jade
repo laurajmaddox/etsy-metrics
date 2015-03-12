@@ -20,11 +20,11 @@ block content
                     .stat-block.text-center
                         span.center-block !{results.viewsDaily}
                         span.center-block.stat-label Average daily views
-    if results.total == 0
+    if error
         .container
             .row
-                .col-lg-10.col-lg-offset-1.no-result
-                    h3.text-center It looks like your tag is one of a kind! Or maybe you made a mistake typing in your search term. Etsy couldn't find any listings using that tag.
+                .col-lg-8.col-lg-offset-2.no-result
+                    h3.text-center !{error}
     else
         .container
             .row

@@ -5,6 +5,7 @@ App GET + POST routes
 */
 
 var express = require('express');
+var Hashes = require('jshashes');
 var router = express.Router();
 
 var constants = require('./constants');
@@ -21,39 +22,45 @@ router.get('/', function (req, res, next) {
 
 /* GET search route, redirect to dashboard route */
 router.get('/search', function (req, res, next) {
-    var tag = helpers.tagToSlug(req.query.tag);
-    res.redirect('/tag/' + tag);
+    var tag = helpers.clean(req.query.tag);
+    if (tag) {
+        res.redirect('/tag/' + tag);
+    } else {
+        res.redirect('/tag/');
+    }
 });
 
-/* GET dashboard view with no search term entered */
-router.get('/tag', function (req, res, next) {
-    var empty_results = {
-        listings: [],
-        viewsDaily: 0,
-        tagsSorted: []
-    };
-    var results = new Results('?', 0, empty_results, true)    
-    res.render('dashboard', { results: results });
+/* GET empty dashboard view for empty or invalid tag query */
+router.get('/tag', function (req, res, nect) {
+    var results = constants.EMPTY_RESULTS_OBJECT;
+    var error = 'Oops! It looks like your search was empty or included'
+        + ' an invalid tag. Try starting a new search with a different tag.'
+    res.render('dashboard', {results: results, error: error});
 });
 
 /* GET dashboard view for a tag search */
-router.get('/tag/:slug', function (req, res, next) {
-    var tag = req.params.slug;
+router.get('/tag/:tag', function (req, res, next) {
+    if (!helpers.is_valid(req.params.tag)) {
+        return res.status(404).render('404');
+    }
+    var tag = helpers.clean(req.params.tag);
     var sort = req.query.sort || 'views';
+
     dashboard.cacheGet(tag, function (results) {
         if (results) {
-            results = new Results(helpers.tagFromSlug(tag), results.total, results, true)
+            results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
             res.render('dashboard', {results: results});
         } else {
             dashboard.etsyGet(
-                helpers.tagFromSlug(tag),
+                tag,
                 req.app.locals.config.apiKey,
                 function (results) {
                     results = results.sortBy(constants.SORT_KEYS[sort]);
                     dashboard.cacheSet(tag, results);
                     res.render('dashboard', {results: results});
-                }
+                },
+                next
             );
         }
     });
