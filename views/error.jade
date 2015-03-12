@@ -1,6 +1,9 @@
 extends layout
 
 block content
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+
+    .container-fluid.error-page
+        .row
+            .col-lg-8.col-lg-offset-2.text-center
+                h1 Oops!
+                p So sorry! Something went wrong on our end. An error report's been sent and we'll check it out ASAP.
