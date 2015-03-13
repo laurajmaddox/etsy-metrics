@@ -9,6 +9,7 @@ Dashboard view controller + helper functions
 var request = require('request');
 
 var Results = require('./results');
+var constants = require('./constants');
 
 var Memcached = require('memcached');
 var memcached = new Memcached('127.0.0.1:11211');
@@ -51,8 +52,12 @@ module.exports.cacheSet = function (key, value, timeout) {
 module.exports.etsyGet = function (tag, api_key, callback, next) {
     var url = createRequestUrl(tag, api_key);
     request({url: url, json: true}, function (err, response, etsy_data) {
-        if (response.statusCode == 200) {
+        if (response.statusCode === 200) {
             return callback(new Results(tag, etsy_data.count, etsy_data.results));
+        } else if (response.statusCode === 403) {
+            var error = 'Oh no! We\'ve reached our max number of API requests for the day.'
+                + ' An error report has been sent and we\'re looking into fixing it.';
+            return callback(new Results(tag, 0, constants.EMPTY_RESULTS_OBJECT), error);
         } else {
             return next({statusCode: response.statusCode, message: etsy_data});
         }

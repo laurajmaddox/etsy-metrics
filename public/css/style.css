@@ -88,7 +88,7 @@ Index view
 }
 
 .landing-search {
-    margin: 40px auto 15px;
+    margin: 60px auto 15px;
 }
 
 .landing-search .input-group .form-control {
@@ -329,19 +329,29 @@ Dashboard view
     z-index: 999999;
 }
 
-.error-page {
+.blue-page {
     background-color: #66b5d7;
     color: #fff;
 }
-.error-page h1 {
+.blue-page h1 {
     font-size: 180px;
     font-weight: 300;
     margin-top: 120px;
 }
 
-.error-page p {
+.blue-page h2 {
+    font-size: 56px;
+    font-weight: 300;
+    margin-top: 100px;
+}
+
+.blue-page h3,
+.blue-page p {
     font-size: 18px;
     font-weight: 300;
+}
+
+.blue-page p {
     margin-bottom: 200px;
 }
 
