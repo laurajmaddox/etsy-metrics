@@ -43,11 +43,12 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         if (err.status === 404) {
-            res.render('404');
+            res.render('404', {title: '404 - '});
         } else {
             res.render('error', {
                 message: err.message,
                 status: err.statusCode,
+                title: 'Error -',
                 error: err
             });
         }
@@ -59,9 +60,9 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     if (err.status === 404) {
-        res.render('404');
+        res.render('404', {title: '404 - '});
     } else {
-        res.render('error');
+        res.render('error', {title: 'Error - '});
     }
 });
 

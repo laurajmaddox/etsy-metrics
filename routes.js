@@ -31,8 +31,8 @@ router.get('/search', function (req, res, next) {
 });
 
 /* GET empty dashboard view for empty or invalid tag query */
-router.get('/tag', function (req, res, next) {
-    var results = constants.EMPTY_RESULTS_OBJECT;
+router.get('/tag/', function (req, res, next) {
+    var results = new Results('&nbsp;', 0, constants.EMPTY_RESULTS_OBJECT);
     var error = 'Oops! It looks like your search was empty or included'
         + ' an invalid tag. Try starting a new search with a different tag.'
     res.render('dashboard', {results: results, error: error});
@@ -52,19 +52,24 @@ router.get('/tag/:tag', function (req, res, next) {
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
             res.render('dashboard', {
-                results: results, 
+                results: results,
+                title: results.searchTerm + ' - ',
                 error: helpers.check_empty(results.listings)
             });
         } else {
             dashboard.etsyGet(
                 tag,
                 req.app.locals.config.apiKey,
-                function (results) {
-                    results = results.sortBy(constants.SORT_KEYS[sort]);
-                    dashboard.cacheSet(cache_key, results);
+                function (results, error) {
+                    if (!error) {
+                        var error = helpers.check_empty(results.listings);
+                        results = results.sortBy(constants.SORT_KEYS[sort]);
+                        dashboard.cacheSet(cache_key, results);
+                    }
                     res.render('dashboard', {
-                        results: results, 
-                        error: helpers.check_empty(results.listings)
+                        results: results,
+                        title: results.searchTerm + ' - ',
+                        error: error
                     });
                 },
                 next
@@ -74,15 +79,15 @@ router.get('/tag/:tag', function (req, res, next) {
 });
 
 router.get('/about', function (req, res, next) {
-    res.render('about');
+    res.render('about', {title: 'About - '});
 });
 
 router.get('/help', function (req, res, next) {
-    res.render('help');
+    res.render('help', {title: 'Help - '});
 });
 
 router.get('/contact', function (req, res, next) {
-    res.render('contact');
+    res.render('contact', {title: 'Contact - '});
 });
 
 module.exports = router;
