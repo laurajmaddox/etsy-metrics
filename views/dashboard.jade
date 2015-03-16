@@ -3,32 +3,32 @@ extends layout
 block content
     .container-fluid
         .container
-            .row
-                .col-lg-4.col-lg-offset-1
+            .row.stats-row
+                .col-xs-12.col-xs-offset-0.col-sm-12.col-sm-offset-0.col-md-5.col-md-offset-0.col-lg-4.col-lg-offset-1
                     .stat-block.text-right
                         span.center-block !{results.searchTerm}
                         span.center-block.stat-label Your search term
-                .col-lg-2
+                .col-xs-12.col-xs-offset-0.col-sm-4.col-md-3.col-lg-2
                     .stat-block.blue.text-center
                         span.center-block !{results.stringify_total()}
                         span.center-block.stat-label.muted Total listings
-                .col-lg-2
+                .col-xs-12.col-xs-offset-0.col-sm-4.col-md-2.col-lg-2
                     .stat-block.dark-blue.text-center
                         span.center-block !{results.tagsSorted.length}
                         span.center-block.stat-label.muted Tag suggestions
-                .col-lg-2
+                .col-xs-12.col-xs-offset-0.col-sm-4.col-md-2.col-lg-2
                     .stat-block.text-center
                         span.center-block !{results.viewsDaily}
-                        span.center-block.stat-label Average daily views
+                        span.center-block.stat-label Avg. daily views
     if error
         .container
             .row
-                .col-lg-10.col-lg-offset-1.no-result
-                    h3.text-center !{error}
+                .col-xs-12.col-xs-offset-0.col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1.dashboard-error.text-center
+                    h3 !{error}
     else
         .container
             .row
-                .col-lg-4.col-lg-offset-1.toggle-results
+                .col-xs-8.col-xs-offset-2.col-sm-7.col-sm-offset-0.col-md-4.col-md-offset-0.col-lg-4.col-lg-offset-1.toggle-results
                     div(role='tabpanel')
                         ul.nav.nav-tabs.nav-justified(role='tablist')
                             li.active(role='presentation')
@@ -37,7 +37,7 @@ block content
                                 a(href='#tags', aria-controls='tags', role='tab', data-toggle='tab') Tags
         .container
             .row
-                .col-lg-10.col-lg-offset-1
+                .col-xs-12.col-xs-offset-0.col-sm-12.col-sm-offset-0.col-md-12.col-md-offset-0.col-lg-10.col-lg-offset-1
                     .tab-content
                         .tab-pane.active(role='tabpanel', id='listings')
                             include dashboard-listings

@@ -1,16 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400);
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 
 
 /*
 =================================================
-Base styling
+Base layout + cross-view styling
 =================================================
 */
 
 body {
     background-color: #f2f2f2;
+    color: #484848;
     font-family: 'Open Sans', 'Helvetica', Arial, sans-serif;
 }
 
@@ -18,10 +18,13 @@ a {
     color: #52abd2;
 }
 
+/***** Navbar *****/
 .navbar {
     background-color: #fefefe;
     box-shadow: 0 1px 3px rgba(0,0,0,.06);
-    height: 60px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    min-height: 60px;
     margin-bottom: 0;
     padding-top: 5px;
 }
@@ -32,9 +35,8 @@ a {
 
 .navbar-default .navbar-brand {
     color: #484848;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Helvetica', sans-serif;
     font-size: 17px;
-    font-weight: bold;
     letter-spacing: 3px;
 }
 
@@ -46,64 +48,103 @@ a {
 
 .navbar .search input {
     border-radius: 30px;
-    margin-top: 1px;
-    min-width: 250px;
+    min-width: 230px;
 }
 
 .navbar .search .btn {
     background-color: transparent;
-    color: #484848;
+    color: #595959;
     font-size: 16px;
-    margin: 2px 0 0 7px;
-    padding: 0;
 }
 
+/**** Scroll to top arrow *****/
+.scroll-top {
+    background: none;
+    font-size: 60px;
+    color: #484848;
+    text-decoration: none;
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    display: none;
+    z-index: 999999;
+}
+
+/***** Footer *****/
 #footer {
     background-color: #fcfcfc;
     border-top: 1px solid #e9e9e9;
-    color: #595959;
     padding-bottom: 30px;
     padding-top: 30px;
 }
 
+/*
+=================================================
+Index + error views
+=================================================
+*/
 
-/************************************************
-Index view
-************************************************/
-
-.landing-text h1,
-.landing-text h3 {
+.blue-page {
+    background-color: #66b5d7;
     color: #fff;
-    font-weight: normal;
+    font-weight: 300;
+    padding-bottom: 200px;
+    padding-top: 100px;
 }
 
-.landing-text h1 {
-    font-size: 49px;
-    margin-top: 100px;
+.blue-page h1 {
+    font-size: 180px;
+    font-weight: 300;
 }
 
-.landing-text h3 {
-    font-size: 20px;
+.blue-page h2 {
+    font-size: 58px;
+    font-weight: 300;
+}
+
+.blue-page h3 {
+    font-size: 19px;
+    font-weight: 300;
     line-height: 28px;
 }
 
 .landing-search {
-    margin: 60px auto 15px;
+    margin: 45px auto 15px;
 }
 
 .landing-search .input-group .form-control {
-    border-bottom-left-radius: 4px !important;
-    border-top-left-radius: 4px !important;
+    border-radius: 20px !important;
     height: 38px;
     min-width: 300px;
 }
 
+.landing-search .glyphicon {
+    font-size: 16px;
+}
+
 .landing-search .btn {
     background-color: transparent;
-    border: 2px solid #fff;
     color: #fff;
 }
 
+/*
+=================================================
+About + help views
+=================================================
+*/
+
+.info-page {
+    margin-top: 70px;
+    min-height: 600px;
+}
+
+.info-page h1 {
+    font-weight: 300;
+}
+
+.info-page p {
+    margin-top: 18px;
+}
 
 /*
 =================================================
@@ -111,30 +152,59 @@ Dashboard view
 =================================================
 */
 
-/* Tabs to toggle result panes */
+/***** Listing stat blocks *****/
+.stats-row {
+    padding-top: 40px;
+}
+
+.stat-block {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    color: #484848;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding: 15px 20px 20px;
+}
+
+.stat-label {
+    color: #b0b0b0;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.stat-label.muted {
+    color: #e3e3e3;
+}
+
+.blue {
+    background-color: #66b5d7;
+    color: #fff;
+}
+
+.dark-blue {
+    background-color: #335397;
+    color: #fff;
+}
+
+/***** Error message *****/
+.dashboard-error h3 {
+    font-weight: 300;
+    margin: 100px auto 250px;
+}
+
+/***** Tabs to toggle results *****/
 .toggle-results {
     margin-top: 20px;
     text-transform: uppercase;
 }
 
 .nav-tabs.nav-justified>li>a {
-    border-color: #f3f3f3;
     border-bottom: none;
     font-size: 13px;
-}
-
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:focus,
-.nav-tabs>li.active>a:hover {
-    background-color: #f6f6f6;
-    box-shadow: 1px 0 2px rgba(0,0,0,0.07);
-    color: #595959;
-}
-
-.nav-tabs>li>a:hover {
-    background-color: transparent;
-    border-color: #f3f3f3;
-    box-shadow: none;
 }
 
 .nav-tabs.nav-justified>.active>a,
@@ -144,16 +214,36 @@ Dashboard view
     border: 1px solid #f6f6f6;
 }
 
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    background-color: #f6f6f6;
+    box-shadow: 1px 0 2px rgba(0,0,0,0.07);
+    -webkit-box-shadow: 1px 0 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 1px 0 2px rgba(0,0,0,0.07);    
+    color: #595959;
+}
+
+.nav-tabs>li>a:hover {
+    background-color: transparent;
+    border-color: #f3f3f3;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+/***** Dashboard results panel *****/
 .tab-pane {
     background-color: #fff;
     border-radius: 3px;
     margin-bottom: 120px;
 }
 
-/* Dashboard panel with results content */
 .panel {
     border: 0;
     box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.07);
     margin: 0;
 }
 
@@ -168,61 +258,17 @@ Dashboard view
     padding: 13px 20px;
 }
 
-.panel-default>.panel-heading .explanation {
-    color: #999;
-    font-size: 13px;
-    padding: 10px 40px 20px;
-}
+/*
+=================================================
+Dashboard - Listings pane
+=================================================
+*/
 
-.panel-default>.panel-heading .explanation h3 {
-    color: #484848;
-    font-weight: 300;
-}
-
-
-.listing {
-    border-bottom: 1px solid #f0f0f0;
-    color: #484848;
-    font-size: 13px;
-    padding: 20px 10px;
-}
-
-.listing .col-lg-3 {
-    width: 205px;
-}
-
-.listing .col-lg-9 {
-    padding-right: 0;
-}
-
-.listing .stat-label {
-    margin-right: 5px;
-}
-
-.listing .space-right {
-    line-height: 26px;
-    margin-right: 20px;
-}
-
-.listing .tag {
-    background-color: #f3f3f3;
-    color: #999;
-    display: inline-block;
-    font-size: 12px;
-    margin: 7px 7px 0 0;
-    padding: 3px 7px 5px 7px;
-}
-
-.listing a.tag:hover {
-    background-color: #fafafa;
-    text-decoration: none;
-}
-
-/* Bootstrap pills for sorting options */
+/***** Bootstrap pills for sorting *****/
 .sort-listings .nav-pills>li {
     float: right;
     font-size: 9px;
-    margin-left: 12px;
+    margin-left: 10px;
     text-transform: uppercase;
 }
 
@@ -240,13 +286,72 @@ Dashboard view
     color: #595959;
 }
 
-/* Tag suggestion list in left column */
+/***** Product listings *****/
+.listing {
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 13px;
+    padding: 20px 10px;
+}
+
+.listing .col-lg-3 {
+    max-width: 205px;
+}
+
+.listing .col-lg-9 {
+    padding-right: 0;
+}
+
+.listing .product-stat {
+    line-height: 26px;
+    margin: 0 20px 0 5px;
+}
+
+.listing .tag {
+    background-color: #f3f3f3;
+    color: #999;
+    display: inline-block;
+    font-size: 12px;
+    margin: 7px 7px 0 0;
+    padding: 3px 7px 5px 7px;
+}
+
+.listing .tag:hover {
+    background-color: #fafafa;
+    color: #484848;
+    text-decoration: none;
+}
+
+/***** Listing styles for mobile view *****/
+.listing .visible-xs .space-right {
+    margin-right: 15px;
+}
+
+.listing .visible-xs img {
+    margin-bottom: 15px;
+}
+
+/*
+=================================================
+Dashboard - Tags pane
+=================================================
+*/
+
+.panel-default>.panel-heading .explanation {
+    color: #999;
+    font-size: 13px;
+    padding: 10px 40px 20px;
+}
+
+.panel-default>.panel-heading .explanation h3 {
+    color: #484848;
+    font-weight: 300;
+}
+
 .list-tags {
     margin-bottom: 60px;
     margin-top: 30px;
 }
 
-.list-tags .h4,
 .list-tags a {
     color: #333;
     font-size: 15px;
@@ -256,7 +361,7 @@ Dashboard view
     background-color: #ddd;
     border-radius: 2px;
     height: 5px;
-    margin-top: 6px;
+    margin-top: 8px;
 }
 
 .percent-bar .fill {
@@ -267,96 +372,6 @@ Dashboard view
 
 .percent-text {
     color: #666;
-    font-size: 14px;
-    padding-top: 7px;
-}
-
-.stat-block {
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    color: #484848;
-    font-size: 36px;
-    font-weight: 300;
-    margin: 40px 0 20px 0;
-    padding: 15px 20px 20px;
-}
-
-.blue {
-    background-color: #66b5d7;
-    color: #fff;
-}
-
-.dark-blue {
-    background-color: #335397;
-    color: #fff;
-}
-
-.stat-label {
-    color: #b0b0b0;
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.stat-label.muted {
-    color: #e3e3e3;
-}
-
-.info-page {
-    margin-top: 70px;
-    min-height: 600px;
-}
-
-.info-page p {
-    margin-top: 18px;
-}
-
-.info-page h1 {
-    font-weight: 300;
-}
-
-/* Scroll to top arrow */
-.scroll-top {
-    text-align: center; 
-    background: none;
-    font-size: 60px;
-    color: #484848;
-    text-decoration: none;
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    display: none;
-    z-index: 999999;
-}
-
-.blue-page {
-    background-color: #66b5d7;
-    color: #fff;
-}
-.blue-page h1 {
-    font-size: 180px;
-    font-weight: 300;
-    margin-top: 120px;
-}
-
-.blue-page h2 {
-    font-size: 56px;
-    font-weight: 300;
-    margin-top: 100px;
-}
-
-.blue-page h3,
-.blue-page p {
-    font-size: 18px;
-    font-weight: 300;
-}
-
-.blue-page p {
-    margin-bottom: 200px;
-}
-
-.no-result h3 {
-    font-weight: 300;
-    margin-bottom: 250px;
-    margin-top: 100px;
+    padding-bottom: 10px;
+    padding-top: 5px;
 }

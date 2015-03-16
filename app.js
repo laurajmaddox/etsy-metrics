@@ -46,7 +46,6 @@ if (app.get('env') === 'development') {
             res.render('404', {title: '404 - '});
         } else {
             res.render('error', {
-                message: err.message,
                 status: err.statusCode,
                 title: 'Error -',
                 error: err
