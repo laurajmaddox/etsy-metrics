@@ -1,6 +1,7 @@
 {
   "name": "etsy-metrics",
   "version": "0.0.0",
+  "description": "Listing statistics and tag suggestions for Etsy sellers",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -16,5 +17,8 @@
     "morgan": "~1.5.1",
     "request": "^2.51.0",
     "serve-favicon": "~2.2.0"
+  },
+  "engines": {
+    "node": "0.10.34"
   }
 }
