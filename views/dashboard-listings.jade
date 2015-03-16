@@ -22,32 +22,32 @@ div
                             .col-xs-12.col-sm-8.col-md-9.col-lg-9
                                 .row
                                     .col-xs-12.col-sm-12.col-md-12.col-lg-12
-                                        a(href='#{item.url}', target='_blank') !{item.title}
+                                        a(href='#{item.url}', target='_blank') #{item.title}
                                 .row
                                     .visible-xs.col-xs-12.hidden-sm.hidden-md.hidden-lg
                                         span.stat-label Creation date:
-                                        span.product-stat !{item.creationDate}
+                                        span.product-stat #{item.creationDate}
                                         span.stat-label Price:
-                                        span.product-stat $!{item.price}
+                                        span.product-stat $#{item.price}
                                         span
                                             br
                                         span.stat-label Views:
-                                        span.product-stat !{item.views}
+                                        span.product-stat #{item.views}
                                         span.stat-label Favorites:
-                                        span.product-stat !{item.num_favorers}
+                                        span.product-stat #{item.num_favorers}
                                         span.stat-label Avg. daily views:
-                                        span.product-stat !{item.viewsDaily}
+                                        span.product-stat #{item.viewsDaily}
                                     .hidden-xs.col-sm-12.col-md-12.col-lg-12
                                         span.stat-label Creation date:
-                                        span.product-stat !{item.creationDate}
+                                        span.product-stat #{item.creationDate}
                                         span.stat-label Price:
-                                        span.product-stat $!{item.price}
+                                        span.product-stat $#{item.price}
                                         span.stat-label Views:
-                                        span.product-stat !{item.views}
+                                        span.product-stat #{item.views}
                                         span.stat-label Favorites:
-                                        span.product-stat !{item.num_favorers}
+                                        span.product-stat #{item.num_favorers}
                                         span.stat-label Avg. daily views:
-                                        span.product-stat !{item.viewsDaily}
+                                        span.product-stat #{item.viewsDaily}
                                 .row
                                     .col-xs-12.col-sm-12.col-md-12.col-lg-12
                                         each tag in item.tags

@@ -6,25 +6,25 @@ block content
             .row.stats-row
                 .col-xs-12.col-xs-offset-0.col-sm-12.col-sm-offset-0.col-md-5.col-md-offset-0.col-lg-4.col-lg-offset-1
                     .stat-block.text-right
-                        span.center-block !{results.searchTerm}
+                        span.center-block #{results.searchTerm}
                         span.center-block.stat-label Your search term
                 .col-xs-12.col-xs-offset-0.col-sm-4.col-md-3.col-lg-2
                     .stat-block.blue.text-center
-                        span.center-block !{results.stringifyTotal()}
+                        span.center-block #{results.stringifyTotal()}
                         span.center-block.stat-label.muted Total listings
                 .col-xs-12.col-xs-offset-0.col-sm-4.col-md-2.col-lg-2
                     .stat-block.dark-blue.text-center
-                        span.center-block !{results.tagsSorted.length}
+                        span.center-block #{results.tagsSorted.length}
                         span.center-block.stat-label.muted Tag suggestions
                 .col-xs-12.col-xs-offset-0.col-sm-4.col-md-2.col-lg-2
                     .stat-block.text-center
-                        span.center-block !{results.viewsDaily}
+                        span.center-block #{results.viewsDaily}
                         span.center-block.stat-label Avg. daily views
     if error
         .container
             .row
                 .col-xs-12.col-xs-offset-0.col-sm-12.col-sm-offset-0.col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1.dashboard-error.text-center
-                    h3 !{error}
+                    h3 #{error}
     else
         .container
             .row

@@ -70,14 +70,15 @@ var Results = function (searchTerm, total, results, fromCache) {
 Results.prototype.sortTags = function (counts, total) {
     var key, tags, percent;
     tags = [];
+    total = total > 100 ? 100 : total;
 
     for (key in counts) {
         if (counts.hasOwnProperty(key)) {
-            total = total > 100 ? 100 : total;
             percent = Math.round(counts[key] / total * 100);
             tags.push([key, percent]);
         }
     }
+
     return tags.sort(function (a, b) {
         return b[1] - a[1];
     });

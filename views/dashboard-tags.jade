@@ -14,7 +14,7 @@ div
                             each tag in results.tagsSorted
                                 .row
                                     .col-xs-12.col-sm-12.col-md-12.col-lg-12
-                                        a(href='/search?tag=#{tag[0]}') !{tag[0]}
+                                        a(href='/search?tag=#{tag[0]}') #{tag[0]}
                                     .col-xs-12.col-sm-12.col-md-12.col-lg-12
                                         .percent-bar
                                             .fill(style='width: #{tag[1]}%')
