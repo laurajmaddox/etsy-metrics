@@ -16,19 +16,20 @@ var memcached = new Memcached('127.0.0.1:11211');
 
 
 /* Creates URL string for Etsy API request */
-var createRequestUrl = function (search_term, api_key) {
-    var host = 'https://openapi.etsy.com';
-    var path = '/v2/listings/active';
-    var fields = {
+var createRequestUrl = function (searchTerm, apiKey) {
+    var fields, host, params, path;
+    host = 'https://openapi.etsy.com';
+    path = '/v2/listings/active';
+    fields = {
         'limit': '100',
-        'tags': search_term,
+        'tags': searchTerm,
         'fields': 'title,price,tags,views,num_favorers,original_creation_tsz,url',
         'sort_on': 'score',
         'includes': 'MainImage(url_170x135)',
-        'api_key': api_key
+        'api_key': apiKey
     };
 
-    var params = Object.keys(fields).map(function (key) {
+    params = Object.keys(fields).map(function (key) {
         return key + '=' + fields[key];
     }).join('&');
 
@@ -49,17 +50,19 @@ module.exports.cacheSet = function (key, value, timeout) {
 };
 
 /* Etsy API GET request for listings matching tag */
-module.exports.etsyGet = function (tag, api_key, callback, next) {
-    var url = createRequestUrl(tag, api_key);
-    request({url: url, json: true}, function (err, response, etsy_data) {
+module.exports.etsyGet = function (tag, apiKey, callback, next) {
+    var url = createRequestUrl(tag, apiKey);
+
+    request({url: url, json: true}, function (err, response, etsyData) {
         if (response.statusCode === 200) {
-            return callback(new Results(tag, etsy_data.count, etsy_data.results));
+            return callback(new Results(tag, etsyData.count, etsyData.results));
         } else if (response.statusCode === 403) {
-            var error = 'Oh no! We\'ve reached our max number of API requests for the day.'
-                + ' An error report has been sent and we\'re looking into fixing it.';
-            return callback(new Results(tag, 0, constants.EMPTY_RESULTS_OBJECT), error);
+            return callback(
+                new Results(tag, 0, constants.EMPTY_RESULTS_OBJECT),
+                constants.ERRORS.apiLimit
+            );
         } else {
-            return next({statusCode: response.statusCode, message: etsy_data});
+            return next({statusCode: response.statusCode, message: etsyData});
         }
     });
 };

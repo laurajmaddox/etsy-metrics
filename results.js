@@ -6,21 +6,24 @@ Results object for listings + stats from Etsy API response
 =============================================================
 */
 
-var Results = function (searchTerm, total, results, from_cache) {
+var Results = function (searchTerm, total, results, fromCache) {
     this.searchTerm = searchTerm;
     this.total = total;
 
-    if (from_cache) {
+    if (fromCache) {
+
         this.listings = results.listings;
         this.viewsDaily = results.viewsDaily;
         this.tagsSorted = results.tagsSorted;
+
     } else {
+
         this.viewsDaily = 0;
         var creationDate, i, k, key, listing, listingAge,
-            listingViewsDaily, relevancy, tagCounts;
-        tagCounts = {};
+            listingViewsDaily, nonemptyListings, tagCounts;
 
-        var nonempty_listings = [];
+        nonemptyListings = [];
+        tagCounts = {};
 
         for (i = 0; i < results.length; i += 1) {
             listing = results[i];
@@ -31,7 +34,7 @@ var Results = function (searchTerm, total, results, from_cache) {
                 listing.relevancy = results.length - i;
 
                 // Save thumbnail URL or replace with blank if no image
-                listing.image_url = listing.MainImage ? listing.MainImage.url_170x135 : 'image/blank_thumbnail.png';
+                listing.imageUrl = listing.MainImage ? listing.MainImage.url_170x135 : 'image/blank_thumbnail.png';
 
                 // Add readable creation date to listing object
                 creationDate = new Date(listing.original_creation_tsz * 1000);
@@ -50,15 +53,16 @@ var Results = function (searchTerm, total, results, from_cache) {
                     key = listing.tags[k].toLowerCase();
                     tagCounts[key] = (tagCounts[key] || 0) + 1;
                 }
-            // Add to nonempty list    
-            nonempty_listings.push(listing);
+
+                // Add to nonempty array    
+                nonemptyListings.push(listing);
             }
         }
 
         // Save the array of listings that contained data
-        this.listings = nonempty_listings;
-        
-        this.viewsDaily = (this.viewsDaily / (nonempty_listings.length || 1)).toFixed(1);
+        this.listings = nonemptyListings;
+
+        this.viewsDaily = (this.viewsDaily / (nonemptyListings.length || 1)).toFixed(1);
         this.tagsSorted = this.sortTags(tagCounts, total);
     }
 };
@@ -79,15 +83,16 @@ Results.prototype.sortTags = function (counts, total) {
     });
 };
 
-Results.prototype.sortBy = function (sort_by) {
+Results.prototype.sortBy = function (sortOption) {
     this.listings = (this.listings || []).sort(function (a, b) {
-        return b[sort_by] - a[sort_by];
+        return b[sortOption] - a[sortOption];
     });
     return this;
 };
 
-Results.prototype.stringify_total = function () {
-    return this.total < 50000 ? this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '50,000+';
-}
+Results.prototype.stringifyTotal = function () {
+    return this.total < 50000 ?
+        this.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '50,000+';
+};
 
 module.exports = Results;

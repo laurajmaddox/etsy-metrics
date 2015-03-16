@@ -1,3 +1,5 @@
+'use strict';
+
 /* 
 ============================================================= 
 App GET + POST routes
@@ -5,14 +7,14 @@ App GET + POST routes
 */
 
 var express = require('express');
-var Hashes = require('jshashes');
 var router = express.Router();
+
+var Hashes = require('jshashes');
+var Results = require('./results');
 
 var constants = require('./constants');
 var dashboard = require('./dashboard');
 var helpers = require('./utils');
-
-var Results = require('./results');
 
 
 /* GET index view */
@@ -20,7 +22,7 @@ router.get('/', function (req, res, next) {
     res.render('index');
 });
 
-/* GET search route, redirect to dashboard route */
+/* GET search route, clean tag, redirect to dashboard route */
 router.get('/search', function (req, res, next) {
     var tag = helpers.clean(req.query.tag);
     if (tag) {
@@ -33,36 +35,45 @@ router.get('/search', function (req, res, next) {
 /* GET empty dashboard view for empty or invalid tag query */
 router.get('/tag/', function (req, res, next) {
     var results = new Results('&nbsp;', 0, constants.EMPTY_RESULTS_OBJECT);
-    var error = 'Oops! It looks like your search was empty or included'
-        + ' an invalid tag. Try starting a new search with a different tag.'
-    res.render('dashboard', {results: results, error: error});
+
+    res.render('dashboard', {
+        results: results,
+        error: constants.ERRORS.invalidTag
+    });
+
 });
 
 /* GET dashboard view for a tag search */
 router.get('/tag/:tag', function (req, res, next) {
-    if (!helpers.is_valid(req.params.tag)) {
+    if (!helpers.isValid(req.params.tag)) {
         return res.status(404).render('404');
     }
-    var tag = helpers.clean(req.params.tag);
-    var sort = req.query.sort || 'views';
-    var cache_key = new Hashes.SHA1().hex(tag);
+
+    var tag = helpers.clean(req.params.tag),
+        cache_key = new Hashes.SHA1().hex(tag),
+        sort = req.query.sort || 'views';
 
     dashboard.cacheGet(cache_key, function (results) {
+
         if (results && results.searchTerm === tag) {
+
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
+
             res.render('dashboard', {
                 results: results,
                 title: results.searchTerm + ' - ',
-                error: helpers.check_empty(results.listings)
+                error: helpers.checkEmpty(results.listings)
             });
+
         } else {
+
             dashboard.etsyGet(
                 tag,
                 req.app.locals.config.apiKey,
                 function (results, error) {
                     if (!error) {
-                        var error = helpers.check_empty(results.listings);
+                        error = helpers.checkEmpty(results.listings);
                         results = results.sortBy(constants.SORT_KEYS[sort]);
                         dashboard.cacheSet(cache_key, results);
                     }
@@ -74,6 +85,7 @@ router.get('/tag/:tag', function (req, res, next) {
                 },
                 next
             );
+
         }
     });
 });
