@@ -13,7 +13,7 @@
     "express": "~4.11.1",
     "jade": "~1.9.1",
     "jshashes": "^1.0.5",
-    "memcached": "^2.1.0",
+    "memjs": "^0.8.5",
     "morgan": "~1.5.1",
     "request": "^2.51.0",
     "serve-favicon": "~2.2.0"
