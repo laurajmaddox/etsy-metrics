@@ -70,7 +70,7 @@ router.get('/tag/:tag', function (req, res, next) {
 
             dashboard.etsyGet(
                 tag,
-                req.app.locals.config.apiKey,
+                process.env.API_KEY,
                 function (results, error) {
                     if (!error) {
                         error = helpers.checkEmpty(results.listings);
