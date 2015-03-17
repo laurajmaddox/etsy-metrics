@@ -11,10 +11,6 @@ var request = require('request');
 var Results = require('./results');
 var constants = require('./constants');
 
-var Memcached = require('memcached');
-var memcached = new Memcached('127.0.0.1:11211');
-
-
 /* Creates URL string for Etsy API request */
 var createRequestUrl = function (searchTerm, apiKey) {
     var fields, host, params, path;
