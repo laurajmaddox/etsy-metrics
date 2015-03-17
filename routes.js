@@ -55,7 +55,7 @@ router.get('/tag/:tag', function (req, res, next) {
 
     dashboard.cacheGet(cache_key, function (results) {
 
-        if (results && results.searchTerm === tag) {
+        if (results) {
 
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
@@ -67,7 +67,6 @@ router.get('/tag/:tag', function (req, res, next) {
             });
 
         } else {
-
             dashboard.etsyGet(
                 tag,
                 process.env.API_KEY,

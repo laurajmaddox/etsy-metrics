@@ -11,6 +11,13 @@ var request = require('request');
 var Results = require('./results');
 var constants = require('./constants');
 
+var memjs = require('memjs');
+var client = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
+    username: process.env.MEMCACHEDCLOUD_USERNAME,
+    password: process.env.MEMCACHEDCLOUD_PASSWORD
+});
+
+
 /* Creates URL string for Etsy API request */
 var createRequestUrl = function (searchTerm, apiKey) {
     var fields, host, params, path;
@@ -34,7 +41,10 @@ var createRequestUrl = function (searchTerm, apiKey) {
 
 /* Check cache for Results object matching tag */
 module.exports.cacheGet = function (key, callback) {
-    memcached.get(key, function (err, data) {
+    client.get(key, function (err, data) {
+        if (data) { 
+            data = JSON.parse(data.toString()); 
+        }
         return callback(data);
     });
 };
@@ -42,7 +52,9 @@ module.exports.cacheGet = function (key, callback) {
 /* Add Results from Etsy API request to cache */
 module.exports.cacheSet = function (key, value, timeout) {
     timeout = timeout || 600;
-    memcached.set(key, value, timeout, function (err, response) { });
+    client.set(key, JSON.stringify(value), function (err, response) { 
+        if (err) { console.log(err); }
+    }, timeout);
 };
 
 /* Etsy API GET request for listings matching tag */
