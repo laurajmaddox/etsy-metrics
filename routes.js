@@ -55,7 +55,7 @@ router.get('/tag/:tag', function (req, res, next) {
 
     dashboard.cacheGet(cache_key, function (results) {
 
-        if (results) {
+        if (results && results.searchTerm === tag) {
 
             results = new Results(tag, results.total, results, true)
                 .sortBy(constants.SORT_KEYS[sort]);
