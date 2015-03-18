@@ -50,10 +50,10 @@ router.get('/tag/:tag', function (req, res, next) {
     }
 
     var tag = helpers.clean(req.params.tag),
-        cache_key = new Hashes.SHA1().hex(tag),
+        cacheKey = new Hashes.SHA1().hex(tag),
         sort = req.query.sort || 'views';
 
-    dashboard.cacheGet(cache_key, function (results) {
+    dashboard.cacheGet(cacheKey, function (results) {
 
         if (results && results.searchTerm === tag) {
 
@@ -74,7 +74,7 @@ router.get('/tag/:tag', function (req, res, next) {
                     if (!error) {
                         error = helpers.checkEmpty(results.listings);
                         results = results.sortBy(constants.SORT_KEYS[sort]);
-                        dashboard.cacheSet(cache_key, results);
+                        dashboard.cacheSet(cacheKey, results);
                     }
                     res.render('dashboard', {
                         results: results,

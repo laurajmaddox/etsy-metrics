@@ -27,9 +27,9 @@ var createRequestUrl = function (searchTerm, apiKey) {
         'limit': '100',
         'tags': searchTerm,
         'fields': 'title,price,tags,views,num_favorers,original_creation_tsz,url',
-        'sort_on': 'score',
+        'sortOn': 'score',
         'includes': 'MainImage(url_170x135)',
-        'api_key': apiKey
+        'apiKey': apiKey
     };
 
     params = Object.keys(fields).map(function (key) {
