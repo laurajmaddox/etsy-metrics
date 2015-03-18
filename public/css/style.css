@@ -114,6 +114,7 @@ Index + error views
 
 .landing-search .input-group .form-control {
     border-radius: 20px !important;
+    font-weight: 400;
     height: 38px;
     min-width: 300px;
 }
