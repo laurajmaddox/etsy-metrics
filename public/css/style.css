@@ -36,8 +36,8 @@ a {
 .navbar-default .navbar-brand {
     color: #484848;
     font-family: 'Montserrat', 'Helvetica', sans-serif;
-    font-size: 17px;
-    letter-spacing: 3px;
+    font-size: 16px;
+    letter-spacing: 2px;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -48,7 +48,7 @@ a {
 
 .navbar .search input {
     border-radius: 30px;
-    min-width: 230px;
+    min-width: 225px;
 }
 
 .navbar .search .btn {
