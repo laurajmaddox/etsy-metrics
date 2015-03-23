@@ -60,6 +60,7 @@ a {
 /**** Scroll to top arrow *****/
 .scroll-top {
     background: none;
+    cursor: pointer;
     font-size: 60px;
     color: #484848;
     text-decoration: none;
