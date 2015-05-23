@@ -61,6 +61,9 @@ var Results = function (searchTerm, total, results, fromCache) {
 
             listing.relevancy = results.length - i;
 
+            // Add shop info for listing
+            listing.shop = listing.Shop
+
             // Save thumbnail URL or replace with blank if no image
             listing.imageUrl = listing.MainImage ? listing.MainImage.url_170x135 : 'image/blank_thumbnail.png';
 

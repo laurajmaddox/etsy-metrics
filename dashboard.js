@@ -28,7 +28,7 @@ var createRequestUrl = function (searchTerm, apiKey) {
         'tags': searchTerm,
         'fields': 'title,price,tags,views,num_favorers,original_creation_tsz,url',
         'sort_on': 'score',
-        'includes': 'MainImage(url_170x135)',
+        'includes': 'MainImage(url_170x135),Shop(shop_name,url)',
         'api_key': apiKey
     };
 

@@ -50,5 +50,9 @@ div
                                         span.product-stat #{item.viewsDaily}
                                 .row
                                     .col-xs-12.col-sm-12.col-md-12.col-lg-12
+                                        span.stat-label Shop: 
+                                        a(href='#{item.shop.url}', target='_blank') #{item.shop.shop_name}
+                                .row
+                                    .col-xs-12.col-sm-12.col-md-12.col-lg-12
                                         each tag in item.tags
                                             a(href='/search?tag=#{tag}').tag #{tag}
